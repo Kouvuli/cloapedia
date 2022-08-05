@@ -1,0 +1,27 @@
+.banner-spot {
+    background: #edeff2 url(../../../assets/images/ads-bg.png) no-repeat scroll center right / auto 100%;
+    clear: both;
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    padding: 15px;
+    position: relative;
+}
+.banner-img img {
+    margin: auto;
+    text-align: center;
+    max-width: 768px;
+    float: none;
+    width: 100%;
+    display: block;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+.clearfix::after {
+    display: block;
+    content: "";
+    clear: both;
+}

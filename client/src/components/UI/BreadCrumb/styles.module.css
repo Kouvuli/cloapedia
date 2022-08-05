@@ -1,0 +1,26 @@
+.breadcrumb {
+    background-color: transparent;
+    border-radius: 0;
+    list-style: outside none none;
+    margin-bottom: 0;
+    text-align: right;
+    padding: 0;
+}
+
+.breadcrumb-item {
+    float: none;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    color: #636c72;
+    content: "/";
+}
+
+.breadcrumb-item.active {
+    color: #636c72;
+}

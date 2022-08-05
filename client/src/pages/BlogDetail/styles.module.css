@@ -1,0 +1,394 @@
+.wb {
+    background-color: #ffffff;
+    border-top: 1px dashed #dadada;
+}
+
+.section {
+    padding: 4rem 0;
+    display: block;
+    position: relative;
+    background-color: #ffffff;
+}
+
+.blog-title-area {
+    display: block;
+    position: relative;
+    padding: 0;
+    margin-bottom: 3rem;
+}
+
+.blog-title-area span {
+    margin: 0.5rem 0;
+    display: block;
+}
+
+.blog-title-area span a {
+    padding: 0 1rem;
+    color: #ffffff !important;
+    border-radius: 3px;
+    background-color: #2ad2c9 !important;
+}
+
+.blog-title-area h3 {
+    font-size: 41px;
+    line-height: 50px;
+    margin-bottom: 7px;
+    margin-top: 0;
+    overflow-wrap: break-word;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #111111;
+}
+
+.blog-meta small {
+    font-size: 11px;
+    display: inline-block;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    color: #111111;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 0.5rem;
+}
+
+
+.blog-title-area .blog-meta small,
+.blog-title-area a {
+    color: #a3a5a8;
+}
+.blog-title-area .blog-meta a {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.blog-meta small:after {
+    content: "/";
+    padding-left: 1rem;
+}
+
+.blog-meta small:last-child:after {
+    content: "";
+}
+.blog-meta small:after {
+    content: "/";
+    padding-left: 1rem;
+}
+
+
+.post-sharing {
+    display: block;
+    width: 100%;
+    position: relative;
+    margin: 1rem 0 0;
+}
+
+.list-inline {
+    padding-left: 0;
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.post-sharing span,
+.post-sharing li {
+    display: inline-block !important;
+    margin-right: 0.5rem;
+}
+
+.post-sharing .btn {
+    padding: 0.8rem 1.6rem;
+    border: unset !important;
+    border-radius: 3px;
+    color: #ffffff !important;
+}
+
+.post-sharing .btn:last-child {
+    padding: 0.8rem 0.9rem;
+    border-radius: 3px;
+    color: #ffffff !important;
+}
+
+.fb-button.btn-primary:focus,
+.fb-button.btn-primary:hover,
+.fb-button.btn-primary {
+    background-color: #3B5998 !important;
+    border-color: #3B5998 !important;
+}
+.tw-button.btn-primary:hover,
+.tw-button.btn-primary:focus,
+.tw-button.btn-primary {
+    background-color: #00B6F1 !important;
+    border-color: #00B6F1 !important;
+}
+.gp-button.btn-primary:hover,
+.gp-button.btn-primary:focus,
+.gp-button.btn-primary {
+    border-color: #DA5333 !important;
+    background-color: #DA5333 !important;
+}
+.tw-button i,
+.fb-button i {
+    margin-right: 0.5rem;
+}
+
+
+/* .single-post-media {
+    
+} */
+
+.pp img {
+    width: 100%;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    /* margin-bottom: 2rem; */
+    max-width: 100%;
+    height: auto;
+}
+.pp figcaption span:first-child{
+    font-size: 14px;
+    font-weight: 500!important;
+    color:#999;
+    /* text-align: center; */
+    
+}
+
+.pp iframe{
+    display:none;
+}
+.pp figcaption span {
+    font-weight: bold;
+    font-size: 14px;
+    /* text-align: center; */
+
+}
+.pp a{
+    text-decoration: underline;
+}
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.img-fullwidth {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.blog-content p{
+  
+    font-size: 15px;
+    line-height: 26px;
+      
+}
+
+.blog-content h3,h2 {
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 17px;
+}
+.pp {
+    /* padding-left: 5%; */
+    padding-right: 5%;
+}
+
+
+/* .pp .float-left {
+    margin: 0 2rem 1rem -3rem;
+} */
+
+.float-left {
+    float: left !important;
+}
+
+
+.blog-title-area {
+    display: block;
+    position: relative;
+    padding: 0;
+    margin-bottom: 3rem;
+}
+
+.blog-title-area span {
+    margin: 0;
+    display: block;
+}
+
+.tag-cloud-single span {
+    background: #3197d6 none repeat scroll 0 0;
+    border-radius: 3px;
+    color: #ffffff;
+    display: inline-block !important;
+    margin-right: 0.5rem !important;
+    padding: 0 1rem;
+}
+
+.tag-cloud-single a,
+.comments-list .media-right,
+.comments-list small {
+    color: #999 !important;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    padding-left: 10px;
+    text-transform: uppercase;
+}
+
+
+.page-wrapper .banner-spot {
+    padding: 0.4rem;
+    background-image: none;
+}
+
+.banner-spot {
+    background: #edeff2 url(../../assets/images/ads-bg.png) no-repeat scroll center right / auto 100%;
+    clear: both;
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    padding: 15px;
+    position: relative;
+}
+
+.banner-img img {
+    margin: auto;
+    text-align: center;
+    max-width: 768px;
+    float: none;
+    width: 100%;
+    display: block;
+}
+
+hr.invis1 {
+    border: 0;
+    margin: 4rem 0;
+}
+
+.custombox {
+    position: relative;
+    padding: 3rem 2rem;
+    border: 1px dashed #dadada;
+}
+.authorbox a {
+    font-weight: bold;
+    color: #111111;
+}
+.authorbox p {
+    font-style: italic;
+    margin-bottom: 1rem;
+    font-size: 15px;
+    line-height: 26px;
+}
+.authorbox p a{
+    color: #3197d6 !important;
+}
+.topsocial a {
+    margin-right: 0.5rem;
+}
+.small-title {
+    background: #edeff2 none repeat scroll 0 0;
+    font-size: 16px;
+    left: 5%;
+    line-height: 1;
+    margin: 0;
+    padding: 0.6rem 1.5rem;
+    position: absolute;
+    text-align: center;
+    top: -18px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-color: #fff;
+    background-image: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1pxsolidrgba(0, 0, 0, .15);
+    border-radius: .25rem;
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+}
+.form-wrapper .form-control {
+    background: #fff none repeat scroll 0 0;
+    border: 1px dashed #dadada;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.3px;
+    margin-bottom: 1.4rem;
+    min-height: 50px;
+    text-transform: none;
+}
+
+.form-wrapper textarea {
+    min-height: 120px !important;
+    padding-top: 1rem;
+}
+
+
+
+.sidebar .widget {
+    position: relative;
+    display: block;
+    margin-bottom: 3rem;
+}
+
+.sidebar .widget-title {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 2rem;
+    padding: 0;
+    line-height: 1;
+}
+
+.form-inline {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+
+.search-form .form-control {
+    border-radius: 0;
+    margin: 0;
+    min-width: 240px;
+    border-right: 0;
+    border: 1px solid #edeff2;
+    font-size: 12px;
+    min-height: 45px;
+    text-transform: none;
+    font-weight: 400;
+}
+
+.search-form a:hover,
+.search-form a:focus,
+.search-form a {
+    padding: 0;
+    border-color: #edeff2 !important;
+    height: 45px;
+    position: absolute;
+    border-radius: 0 !important;
+    background-color: #edeff2 !important;
+    right: 0;
+    color: #a3a5a8 !important;
+    width: 45px;
+    line-height: 45px;
+    margin-left: 0;
+}

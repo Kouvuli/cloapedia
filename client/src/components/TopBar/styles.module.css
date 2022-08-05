@@ -1,0 +1,62 @@
+.topsocial i {
+    margin-right: 0.5rem;
+    font-size: 15px;
+}
+
+.topbar-section {
+    display: block;
+    position: relative;
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    font-size: 14px;
+    border-bottom: 1px dashed #e2e2e2;
+}
+
+.topbar-section a {
+    color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.topbar-section a:focus,
+.topbar-section a:hover {
+    color: rgba(0, 0, 0, 1) !important;
+}
+
+.topbar-section .list-inline {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+
+}
+
+.topbar-section .tooltip-inner {
+    margin-top: 10px !important;
+}
+
+.topbar-section .list-inline-item {
+    padding: 0 0.4rem !important;
+}
+.list-inline-item:not(:last-child) {
+    margin-right: 5px;
+}
+.topmenu i {
+    padding-right: 0.3rem;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-right{
+    text-align: right !important;
+}
+
+.topsearch{
+    cursor: pointer;
+}
+@media screen and (max-width: 599px) {
+    .text-right{
+        text-align: center !important;
+        
+    }
+}

@@ -1,0 +1,148 @@
+.footer {
+    padding: 4rem 0 4rem;
+    background: url(../../assets/images/footer.png) repeat-x center bottom #edeff2;
+}
+
+.footer .widget-title {
+    border-color: #3197d6;
+    display: table;
+    font-size: 18px;
+    line-height: 1;
+    margin: 0 0 2rem;
+    padding: 0 0 0.5rem;
+}
+.list-group {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.blog-list-widget .w-100 {
+    margin-bottom: 1.5rem;
+    display: block;
+}
+.blog-list-widget .list-group-item {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    background-color: transparent;
+}
+.w-100 {
+    width: 100% !important;
+}
+
+.justify-content-between {
+    -webkit-box-pack: justify !important;
+    -webkit-justify-content: space-between !important;
+    -ms-flex-pack: justify !important;
+    justify-content: space-between !important;
+}
+
+
+.blog-list-widget img {
+    background: #fff none repeat scroll 0 0;
+    margin-right: 15px;
+    max-width: 80px;
+    padding: 4px;
+}
+
+.float-left {
+    float: left !important;
+}
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+.blog-list-widget .mb-1 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 0rem !important;
+}
+
+
+
+
+.footer.wb {
+    background-color: #ffffff;
+}
+
+.footer.wb .hovereffect {
+    opacity: 0.1;
+    background-color: rgba(0, 0, 0, 0.0.1);
+}
+
+
+
+.footer ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.footer ul li {
+    margin-bottom: 0.8rem;
+}
+.link-widget li {
+    padding: 0.4rem 0.2rem 0.6rem;
+    text-transform: capitalize;
+    line-height: 1;
+    font-weight: 500;
+    position: relative;
+    margin: 0;
+    border-bottom: 1px dashed #dadada;
+}
+
+.link-widget li span {
+    position: absolute;
+    right: 0;
+}
+.footer ul li:last-child {
+    margin-bottom: 0;
+}
+
+.footer .fa-star {
+    font-size: 12px;
+}
+
+.footer h5,
+.footer ul li a {
+    color: #111111;
+}
+
+
+.footer a,
+.footer p,
+.blog-list-widget small {
+    color: rgba(0, 0, 0, 0.6) !important;
+}
+.text-center {
+    text-align: center !important;
+}
+.footer-text .fa {
+    font-size: 21px;
+    margin: 0 0.3rem;
+}
+.footer-text p {
+    margin: 0 auto;
+    width: 70%;
+
+    padding: 1rem 0 1.2rem;
+}
+.rating i{
+    margin-right:2px;
+}
+
+.social a{
+    margin-right:0.7rem;
+}
+.social i{
+    font-size: 20px;
+}

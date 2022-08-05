@@ -1,0 +1,43 @@
+.wb {
+    background-color: #ffffff;
+    border-top: 1px dashed #dadada;
+}
+
+.page-title {
+    padding: 3rem 0;
+
+}
+
+.page-title h2 {
+    font-size: 24px;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+}
+
+.page-title i {
+    color: #ffffff !important;
+    background-color: #ed1b2e !important;
+    border-radius: 40px;
+    display: inline-block;
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 0.3rem;
+    margin-top: -0.4rem;
+    text-align: center;
+    vertical-align: middle;
+    width: 40px;
+}
+
+
+
+.section {
+    padding: 4rem 0;
+    display: block;
+    position: relative;
+    background-color: #ffffff;
+}
+
+
+

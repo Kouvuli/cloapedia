@@ -1,0 +1,56 @@
+{
+  "name": "client",
+  "version": "5.0.0",
+  "private": true,
+  "dependencies": {
+    "@mui/icons-material": "^5.8.4",
+    "@mui/lab": "latest",
+    "@mui/material": "latest",
+    "@mui/styled-engine-sc": "latest",
+    "@reduxjs/toolkit": "^1.8.3",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@testing-library/user-event": "latest",
+    "axios": "^0.27.2",
+    "clsx": "^1.2.1",
+    "dotenv": "^16.0.1",
+    "formik": "^2.2.9",
+    "html-react-parser": "^3.0.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "query-string": "^7.1.1",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-lazyload": "^3.2.0",
+    "react-owl-carousel": "^2.3.3",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^5.3.3",
+    "react-scripts": "latest",
+    "react-scroll-to-top": "^3.0.0",
+    "sass": "^1.54.0",
+    "styled-components": "latest",
+    "typewriter-effect": "^2.19.0"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@craco/craco": "latest"
+  }
+}
