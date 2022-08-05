@@ -4,6 +4,7 @@ import styles from "./styles.module.css"
 import pic from "../../../assets/images/upload/blog_travel_02.jpg"
 import { toDate } from "../../../utils"
 import { BASE_URL } from "../../../constants"
+import _ from "lodash"
 const GridCard = ({ md = "6", xs = "12", data }) => {
   return (
     <>

@@ -22,20 +22,24 @@ import { toDate } from "../../utils"
 import { BASE_URL } from "../../constants"
 import parse from "html-react-parser"
 import _ from "lodash"
+import Preloader from "../../components/Preloader/Preloader"
+import ResultNotFound from "../../components/ResultNotFound"
 const BlogDetail = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
-  const { data, relatedData, author } = useSelector(detailSelector)
+  const { data, relatedData, author, loading, error } =
+    useSelector(detailSelector)
   useEffect(() => {
     dispatch(fetchDetailById(document.location.pathname))
-    if (!_.isEmpty(data)) {
-      dispatch(fetchAuthorData(parse(data.fields.bylineHtml).href))
-    }
+    // if (!_.isEmpty(data)) {
+    //   dispatch(fetchAuthorData(parse(data.fields.bylineHtml).href))
+    // }
   }, [])
 
   return (
     <>
-      {!_.isEmpty(data) && (
+      {loading && <Preloader />}
+      {!loading && !_.isEmpty(data) && (
         <section className={`${styles.section} ${styles.wb}`}>
           <Grid
             container
@@ -466,6 +470,7 @@ const BlogDetail = () => {
           </Grid>
         </section>
       )}
+      {error && <ResultNotFound message={error} />}
     </>
   )
 }

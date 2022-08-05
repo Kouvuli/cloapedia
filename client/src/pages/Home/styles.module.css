@@ -21,6 +21,10 @@
     width: 33.33333%;
 }
 
+.left-side .post-media ,.right-side .post-media{
+    height: 460px;
+}
+
 .post-media {
     position: relative;
     overflow: hidden;
