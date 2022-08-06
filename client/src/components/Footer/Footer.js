@@ -66,7 +66,7 @@ const Footer = () => {
 
         <Grid item lg={4} sm={12}>
           <div className={styles["widget"]}>
-            <h2 className={styles["widget-title"]}>Popular Categories</h2>
+            <h2 className={styles["widget-title"]}>Popular Sections</h2>
             <div className={styles["link-widget"]}>
               <ul>
                 <li>
