@@ -10,7 +10,10 @@ import SideBlogCard from "../../components/Card/SideBlogCard"
 import BreadCrumb from "../../components/UI/BreadCrumb"
 import RectangleButton from "../../components/UI/Button/RectangleButton"
 import styles from "./styles.module.css"
-import { fetchDataBySection } from "../../redux/reducers/sectionSlice"
+import {
+  fetchDataBySection,
+  fetchTopReadBySection
+} from "../../redux/reducers/sectionSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { sectionSelector } from "../../redux/selectors"
 import AdCard from "../../components/Card/AdCard/AdCard"
@@ -21,10 +24,11 @@ import CustomPagination from "../../components/UI/CustomPagination"
 import ToggleButtons from "../../components/UI/Button/ToggleButton"
 import GridList from "../../components/List/GridList/GridList"
 import BigList from "../../components/List/BigList/BigList"
+// import { fetchSectionCount } from "../../redux/reducers/footerSlice"
 const SectionPage = () => {
   const dispatch = useDispatch()
   const [title, setTitle] = useState(document.location.pathname)
-  const { loading, error, data, page, limit, viewType } =
+  const { loading, error, data, page, limit, viewType, mostRead } =
     useSelector(sectionSelector)
   function capitalizeFirstLetter(string) {
     const b = string.toLowerCase()
@@ -41,6 +45,10 @@ const SectionPage = () => {
         "show-fields": "all"
       })
     )
+    dispatch(
+      fetchTopReadBySection(`/most-read${document.location.pathname}.json`)
+    )
+
     forEach(Object.keys(EXTRA_PATH), (key) => {
       if (document.location.pathname.startsWith(EXTRA_PATH[key])) {
         // const result = capitalizeFirstLetter(key)
@@ -174,9 +182,19 @@ const SectionPage = () => {
               </div>
 
               <div className={styles.widget}>
-                <h2 className={styles["widget-title"]}>Recent Posts</h2>
+                <h2 className={styles["widget-title"]}>Most Read</h2>
                 <div className={styles["blog-list-widget"]}>
                   <div className={styles["list-group"]}>
+                    {mostRead &&
+                      mostRead.map((value, index) => {
+                        return (
+                          <SideBlogCard
+                            key={index}
+                            type="section"
+                            data={value}
+                          />
+                        )
+                      })}
                     {/* <SideBlogCard />
 
                     <SideBlogCard />
@@ -185,7 +203,7 @@ const SectionPage = () => {
                 </div>
               </div>
 
-              <div className={styles.widget}>
+              {/* <div className={styles.widget}>
                 <h2 className={styles["widget-title"]}>Popular Categories</h2>
                 <div className={styles["link-widget"]}>
                   <ul>
@@ -226,7 +244,7 @@ const SectionPage = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
           </Grid>
         </Grid>

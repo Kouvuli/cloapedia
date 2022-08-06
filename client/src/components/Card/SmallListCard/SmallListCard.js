@@ -8,6 +8,7 @@ import { detailSelector } from "../../../redux/selectors"
 import { toDate } from "../../../utils"
 import { BASE_URL } from "../../../constants"
 import _ from "lodash"
+import parse from "html-react-parser"
 const SmallListCard = ({ data }) => {
   return (
     <>
@@ -40,7 +41,7 @@ const SmallListCard = ({ data }) => {
                   {data.fields.headline}
                 </a>
               </h4>
-              <p>{data.fields.trailText}</p>
+              <p>{parse(data.fields.trailText)}</p>
               <small>{data.sectionName}</small>
               <small>{toDate(data.fields.lastModified)}</small>
               <small>by {data.fields.byline}</small>

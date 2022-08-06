@@ -5,6 +5,7 @@ import { Grid } from "@mui/material"
 import { BASE_URL } from "../../../constants"
 import _ from "lodash"
 import { toDate } from "../../../utils"
+import parse from "html-react-parser"
 const BigListCard = ({ data }) => {
   return (
     <>
@@ -58,7 +59,7 @@ const BigListCard = ({ data }) => {
                   {data.fields.headline}
                 </a>
               </h4>
-              <p>{data.fields.trailText}</p>
+              <p>{parse(data.fields.trailText)}</p>
               <small>{data.sectionName}</small>
               <small>{toDate(data.fields.lastModified)}</small>
               <small>by {data.fields.byline}</small>

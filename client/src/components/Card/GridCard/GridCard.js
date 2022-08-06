@@ -5,6 +5,7 @@ import pic from "../../../assets/images/upload/blog_travel_02.jpg"
 import { toDate } from "../../../utils"
 import { BASE_URL } from "../../../constants"
 import _ from "lodash"
+import parse from "html-react-parser"
 const GridCard = ({ md = "6", xs = "12", data }) => {
   return (
     <>
@@ -25,7 +26,7 @@ const GridCard = ({ md = "6", xs = "12", data }) => {
                   {data.fields.headline}
                 </a>
               </h4>
-              <p>{data.fields.trailText}</p>
+              <p>{parse(data.fields.trailText)}</p>
               <small>{data.sectionName}</small>
 
               <small>{toDate(data.fields.lastModified)}</small>

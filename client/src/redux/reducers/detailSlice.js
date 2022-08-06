@@ -42,20 +42,8 @@ const detailSlice = createSlice({
         state.error = false
       })
       .addCase(fetchDetailById.rejected, (state, action) => {
-        state.error = action.error
+        state.error = true
         state.loading = false
-      })
-
-      .addCase(fetchAuthorData.pending, (state) => {
-        // state.loading = true
-        // state.error = false
-      })
-      .addCase(fetchAuthorData.fulfilled, (state, action) => {
-        state.author = action.payload.tag
-      })
-      .addCase(fetchAuthorData.rejected, (state, action) => {
-        // state.error = action.error
-        // state.loading = false
       })
   }
 })

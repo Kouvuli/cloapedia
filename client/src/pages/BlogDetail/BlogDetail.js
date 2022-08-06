@@ -27,8 +27,7 @@ import ResultNotFound from "../../components/ResultNotFound"
 const BlogDetail = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
-  const { data, relatedData, author, loading, error } =
-    useSelector(detailSelector)
+  const { data, relatedData, loading, error } = useSelector(detailSelector)
   useEffect(() => {
     dispatch(fetchDetailById(document.location.pathname))
     // if (!_.isEmpty(data)) {
@@ -113,7 +112,7 @@ const BlogDetail = () => {
 
                 <div className={styles["blog-content"]}>
                   <div className={styles.pp}>
-                    <h3>{data.fields.trailText}</h3>
+                    <h3>{parse(data.fields.trailText)}</h3>
                   </div>
                   <div className={styles.pp}>
                     {parse(data.fields.main)}
@@ -470,7 +469,56 @@ const BlogDetail = () => {
           </Grid>
         </section>
       )}
-      {error && <ResultNotFound message={error} />}
+      {error && (
+        <section className={`${styles.section} ${styles.wb}`}>
+          <Grid
+            container
+            maxWidth="1170px"
+            marginLeft="auto"
+            marginRight="auto"
+            columnSpacing={3}
+          >
+            <Grid item xs={12} lg={9}>
+              <ResultNotFound message="Result Not Found" />
+            </Grid>
+
+            <Grid item xs={12} lg={3}>
+              <div className={styles.sidebar}>
+                <div className={styles.widget}>
+                  <h2 className={styles["widget-title"]}>Search</h2>
+                  <form
+                    className={`${styles["form-inline"]} ${styles["search-form"]}`}
+                  >
+                    <div className={styles["form-group"]}>
+                      <input
+                        type="text"
+                        className={styles["form-control"]}
+                        placeholder="Search on the site"
+                      />
+                    </div>
+                    <RectangleButton>
+                      <i className="fa fa-search"></i>
+                    </RectangleButton>
+                  </form>
+                </div>
+
+                {relatedData.length > 0 && (
+                  <div className={styles.widget}>
+                    <h2 className={styles["widget-title"]}>Related Posts</h2>
+                    <div className={styles["blog-list-widget"]}>
+                      <div className={styles["list-group"]}>
+                        {relatedData.map((rel) => {
+                          return <SideBlogCard key={rel.id} data={rel} />
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </Grid>
+          </Grid>
+        </section>
+      )}
     </>
   )
 }

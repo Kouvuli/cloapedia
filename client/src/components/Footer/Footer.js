@@ -1,65 +1,50 @@
 import { Grid } from "@mui/material"
-import React from "react"
+import { useEffect } from "react"
 import styles from "./styles.module.css"
 import pic from "../../assets/images/upload/blog_square_01.jpg"
 import pic1 from "../../assets/images/upload/blog_square_04.jpg"
 import logo from "../../assets/images/flogo.png"
+import {
+  fetchMostReadAcrossCleopedia,
+  fetchMostReadAll,
+  fetchSectionCount
+} from "../../redux/reducers/footerSlice"
+import { footerSelector } from "../../redux/selectors"
+import { useDispatch, useSelector } from "react-redux"
+import FooterCard from "../Card/FooterCard"
+import { BASE_URL } from "../../constants"
 const Footer = () => {
+  const dispatch = useDispatch()
+  const {
+    mostReadAll,
+    mostReadAcrossCleopedia,
+    mostCommented,
+    mostShared,
+    count
+  } = useSelector(footerSelector)
+  useEffect(() => {
+    dispatch(fetchMostReadAll())
+    dispatch(fetchMostReadAcrossCleopedia())
+    dispatch(fetchSectionCount())
+  }, [])
   return (
     <footer className={styles.footer}>
-      <Grid container className="container">
+      <Grid
+        maxWidth="1170px"
+        marginLeft="auto"
+        marginRight="auto"
+        container
+        columnSpacing={3}
+      >
         <Grid item lg={4} sm={12}>
           <div className={styles.widget}>
-            <h2 className={styles["widget-title"]}>Recent Posts</h2>
+            <h2 className={styles["widget-title"]}>Most Popular</h2>
             <div className={styles["blog-list-widget"]}>
               <div className={styles["list-group"]}>
-                <a href="single.html" className={styles["list-group-item"]}>
-                  <div
-                    className={`${styles["w-100"]} ${styles["justify-content-between"]}`}
-                  >
-                    <img
-                      src={pic}
-                      alt=""
-                      className={`${styles["img-fluid"]} ${styles["float-left"]}`}
-                    />
-                    <h5 className={styles["mb-1"]}>
-                      5 Beautiful buildings you need to before dying
-                    </h5>
-                    <small>12 Jan, 2016</small>
-                  </div>
-                </a>
-
-                <a href="single.html" className={styles["list-group-item"]}>
-                  <div
-                    className={`${styles["w-100"]} ${styles["justify-content-between"]}`}
-                  >
-                    <img
-                      src={pic}
-                      alt=""
-                      className={`${styles["img-fluid"]} ${styles["float-left"]}`}
-                    />
-                    <h5 className={styles["mb-1"]}>
-                      5 Beautiful buildings you need to before dying
-                    </h5>
-                    <small>12 Jan, 2016</small>
-                  </div>
-                </a>
-
-                <a href="single.html" className={styles["list-group-item"]}>
-                  <div
-                    className={`${styles["w-100"]} ${styles["justify-content-between"]}`}
-                  >
-                    <img
-                      src={pic}
-                      alt=""
-                      className={`${styles["img-fluid"]} ${styles["float-left"]}`}
-                    />
-                    <h5 className={styles["mb-1"]}>
-                      5 Beautiful buildings you need to before dying
-                    </h5>
-                    <small>12 Jan, 2016</small>
-                  </div>
-                </a>
+                {mostReadAll &&
+                  mostReadAll.map((value, index) => {
+                    return <FooterCard key={index} data={value} />
+                  })}
               </div>
             </div>
           </div>
@@ -67,73 +52,13 @@ const Footer = () => {
 
         <Grid item lg={4} sm={12}>
           <div className={styles.widget}>
-            <h2 className={styles["widget-title"]}>Popular Posts</h2>
+            <h2 className={styles["widget-title"]}>Most Views</h2>
             <div className={styles["blog-list-widget"]}>
               <div className={styles["list-group"]}>
-                <a href="single.html" className={styles["list-group-item"]}>
-                  <div
-                    className={`${styles["w-100"]} ${styles["justify-content-between"]}`}
-                  >
-                    <img
-                      src={pic1}
-                      alt=""
-                      className={`${styles["img-fluid"]} ${styles["float-left"]}`}
-                    />
-                    <h5 className={styles["mb-1"]}>
-                      Banana-chip chocolate cake recipe with customs
-                    </h5>
-                    <span className={styles.rating}>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                    </span>
-                  </div>
-                </a>
-
-                <a href="single.html" className={styles["list-group-item"]}>
-                  <div
-                    className={`${styles["w-100"]} ${styles["justify-content-between"]}`}
-                  >
-                    <img
-                      src={pic1}
-                      alt=""
-                      className={`${styles["img-fluid"]} ${styles["float-left"]}`}
-                    />
-                    <h5 className={styles["mb-1"]}>
-                      Banana-chip chocolate cake recipe with customs
-                    </h5>
-                    <span className={styles.rating}>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                    </span>
-                  </div>
-                </a>
-                <a href="single.html" className={styles["list-group-item"]}>
-                  <div
-                    className={`${styles["w-100"]} ${styles["justify-content-between"]}`}
-                  >
-                    <img
-                      src={pic1}
-                      alt=""
-                      className={`${styles["img-fluid"]} ${styles["float-left"]}`}
-                    />
-                    <h5 className={styles["mb-1"]}>
-                      Banana-chip chocolate cake recipe with customs
-                    </h5>
-                    <span className={styles.rating}>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                      <i class="bx bxs-star" style={{ color: "#feda03" }}></i>
-                    </span>
-                  </div>
-                </a>
+                {mostReadAcrossCleopedia.length > 0 &&
+                  mostReadAcrossCleopedia.map((value, index) => {
+                    return <FooterCard key={index} data={value} />
+                  })}
               </div>
             </div>
           </div>
@@ -145,38 +70,43 @@ const Footer = () => {
             <div className={styles["link-widget"]}>
               <ul>
                 <li>
-                  <a href="#">
-                    Fahsion <span>(21)</span>
+                  <a href={`${BASE_URL}/world`}>
+                    World News <span>{count.world}</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    Lifestyle <span>(15)</span>
+                  <a href={`${BASE_URL}/sport`}>
+                    Sport <span>{count.sport}</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    Art & Design <span>(31)</span>
+                  <a href={`${BASE_URL}/fashion`}>
+                    Fashion <span>{count.fashion}</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    Health Beauty <span>(22)</span>
+                  <a href={`${BASE_URL}/lifeandstyle`}>
+                    Lifestyle <span>{count.lifestyle}</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    Clothing <span>(66)</span>
+                  <a href={`${BASE_URL}/artanddesign`}>
+                    Art & Design <span>{count.art}</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    Entertaintment <span>(11)</span>
+                  <a href={`${BASE_URL}/games`}>
+                    Games <span>{count.game}</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    Food & Drink <span>(87)</span>
+                  <a href={`${BASE_URL}/food`}>
+                    Food <span>{count.food}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href={`${BASE_URL}/travel`}>
+                    Travel <span>{count.travel}</span>
                   </a>
                 </li>
               </ul>
