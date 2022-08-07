@@ -1,10 +1,29 @@
 import { Grid } from "@mui/material"
-import React from "react"
+import { useEffect } from "react"
 import SearchResultCard from "../../components/Card/SearchResultCard"
 import BreadCrumb from "../../components/UI/BreadCrumb"
-
+import { searchSelector } from "../../redux/selectors"
+import { fetchSearch } from "../../redux/reducers/searchSlice"
+import { useDispatch, useSelector } from "react-redux"
 import styles from "./styles.module.css"
+import CustomPagination from "../../components/UI/CustomPagination"
+import LoadingCardSkeleton from "../../components/LoadingCardSkeleton"
+import { CARD_TYPES } from "../../constants"
+import Loading from "../../components/Loading"
+import ResultNotFound from "../../components/ResultNotFound"
 const SearchResultPage = () => {
+  const dispatch = useDispatch()
+  const { data, page, query, loading, error } = useSelector(searchSelector)
+  useEffect(() => {
+    dispatch(
+      fetchSearch({
+        q: query,
+        page: page,
+        "page-size": 9,
+        "show-fields": "all"
+      })
+    )
+  }, [page])
   return (
     <>
       <div className={`${styles["page-title"]} ${styles.wb}`}>
@@ -15,13 +34,10 @@ const SearchResultPage = () => {
           marginLeft="auto"
           justifyContent="center"
         >
-          <Grid item md={8} xs={12}>
+          <Grid item xs={12}>
             <h2>
               <i className="fa fa-shopping-bag bg-red"></i> Search Result{" "}
             </h2>
-          </Grid>
-          <Grid item md={4} xs={12}>
-            <BreadCrumb />
           </Grid>
         </Grid>
       </div>
@@ -34,50 +50,27 @@ const SearchResultPage = () => {
           marginLeft="auto"
           justifyContent="center"
           columnSpacing={3}
+          rowSpacing={3}
         >
-          <Grid item md={4} xs={12}>
-            <SearchResultCard />
-          </Grid>
-          <Grid item md={4} xs={12}>
-            <SearchResultCard />
-          </Grid>
-          <Grid item md={4} xs={12}>
-            <SearchResultCard />
-          </Grid>
-          <Grid item md={4} xs={12}>
-            <SearchResultCard />
-          </Grid>
-          <Grid item md={4} xs={12}>
-            <SearchResultCard />
-          </Grid>
-          <Grid item md={4} xs={12}>
-            <SearchResultCard />
-          </Grid>
+          {loading && (
+            <>
+              <Loading />
+              <LoadingCardSkeleton
+                type={CARD_TYPES.GRID}
+                size={9}
+                sm={12}
+                md={4}
+              />
+            </>
+          )}
+          {!loading &&
+            data.length > 0 &&
+            data.map((value, i) => {
+              return <SearchResultCard key={i} data={value} />
+            })}
+          {!loading && error && <ResultNotFound message="Result Not Found" />}
           <Grid item xs={12}>
-            <nav aria-label="Page navigation">
-              <ul className="pagination justify-content-start">
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    1
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    2
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    3
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    Next
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <CustomPagination type="search" />
           </Grid>
         </Grid>
       </section>

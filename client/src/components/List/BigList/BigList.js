@@ -14,9 +14,10 @@ const BigList = ({ loading, data, error }) => {
           <LoadingCardSkeleton size={10} sm={12} md={12} />
         </>
       )}
-      {data.map((value, i) => {
-        return <BigListCard key={i} data={value} />
-      })}
+      {!loading &&
+        data.map((value, i) => {
+          return <BigListCard key={i} data={value} />
+        })}
       {error && <ResultNotFound message={error.message} />}
     </Grid>
   )

@@ -15,6 +15,10 @@ const guardianApi = {
   },
   getAuthorById(url) {
     return request.get(url)
+  },
+  getSearchResult(params) {
+    const url = "/search"
+    return request.get(url, { params })
   }
 }
 
