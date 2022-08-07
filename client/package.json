@@ -3,6 +3,8 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^35.0.1",
+    "@ckeditor/ckeditor5-react": "^5.0.2",
     "@mui/icons-material": "^5.8.4",
     "@mui/lab": "latest",
     "@mui/material": "latest",
