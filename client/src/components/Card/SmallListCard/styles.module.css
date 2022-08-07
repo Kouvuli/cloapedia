@@ -28,7 +28,7 @@
 
 .img-fluid {
     max-width: 100%;
-    height: auto;
+    height: 12rem;
 }
 
 .hovereffect {
@@ -142,8 +142,12 @@ hr.invis {
     margin: 2rem 0;
 }
 
-@media screen and (max-width:899px) {
+@media screen and (max-width:600px) {
     .blog-meta.big-meta h4{
-        margin-left: 0;
+        margin-left: 5%;
+    }
+    .blog-meta.big-meta h4{
+        margin-top:-5%;
+        padding-right:0;
     }
 }

@@ -9,17 +9,22 @@ import { toDate } from "../../../utils"
 import { BASE_URL } from "../../../constants"
 import _ from "lodash"
 import parse from "html-react-parser"
+import DefaultImage from "../../../assets/images/default-image.png"
 const SmallListCard = ({ data }) => {
   return (
     <>
       {!_.isEmpty(data) && (
         <Grid item xs={12}>
           <Grid container className={styles["blog-box"]} columnSpacing={3}>
-            <Grid item md={4} xs={12}>
+            <Grid item sm={4} xs={12}>
               <div className={styles["post-media"]}>
                 <a href={`${BASE_URL}/${data.id}`} title="">
                   <img
-                    src={data.fields.thumbnail}
+                    src={
+                      data.fields.thumbnail
+                        ? data.fields.thumbnail
+                        : DefaultImage
+                    }
                     alt=""
                     className={styles["img-fluid"]}
                   />
@@ -32,7 +37,7 @@ const SmallListCard = ({ data }) => {
 
             <Grid
               item
-              md={8}
+              sm={8}
               xs={12}
               className={`${styles["blog-meta"]} ${styles["big-meta"]}`}
             >

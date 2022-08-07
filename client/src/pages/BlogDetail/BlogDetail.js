@@ -43,15 +43,14 @@ const BlogDetail = () => {
           <Grid
             container
             maxWidth="1170px"
-            marginLeft="auto"
-            marginRight="auto"
-            columnSpacing={3}
+            marginLeft={{ lg: "auto", xs: "0px" }}
+            marginRight={{ lg: "auto", xs: "0px" }}
+            padding={{ lg: "0px", md: "0 20px", xs: "0px 10px" }}
+            columnSpacing={{ lg: "24px" }}
           >
             <Grid item xs={12} lg={9}>
               <div className={styles["page-wrapper"]}>
                 <div className={styles["blog-title-area"]}>
-                  <BreadCrumb />
-
                   <span className={styles["color-aqua"]}>
                     <a href="blog-category-01.html" title="">
                       {data.sectionName}
@@ -434,24 +433,6 @@ const BlogDetail = () => {
 
             <Grid item xs={12} lg={3}>
               <div className={styles.sidebar}>
-                <div className={styles.widget}>
-                  <h2 className={styles["widget-title"]}>Search</h2>
-                  <form
-                    className={`${styles["form-inline"]} ${styles["search-form"]}`}
-                  >
-                    <div className={styles["form-group"]}>
-                      <input
-                        type="text"
-                        className={styles["form-control"]}
-                        placeholder="Search on the site"
-                      />
-                    </div>
-                    <RectangleButton>
-                      <i className="fa fa-search"></i>
-                    </RectangleButton>
-                  </form>
-                </div>
-
                 {relatedData.length > 0 && (
                   <div className={styles.widget}>
                     <h2 className={styles["widget-title"]}>Related Posts</h2>

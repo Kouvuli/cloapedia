@@ -39,7 +39,7 @@
 
 
 .navbar-inverse .navbar-nav .nav-link,
-.navbar-nav .nav-link {
+.navbar-nav .nav-link,.nav-item .nav-link {
     font-size: 15px;
     font-weight: 500;
     line-height: 1;
@@ -48,7 +48,7 @@
     color: #121212;
 }
 
-.navbar-toggleable-md .navbar-collapse {
+.navbar-collapse {
     display: -webkit-box !important;
     display: -webkit-flex !important;
     display: -ms-flexbox !important;
@@ -56,7 +56,7 @@
     width: 100%;
 }
 
-.navbar-toggleable-md .navbar-nav {
+.navbar-nav {
     display: flex;
     flex-direction: row;
 }
@@ -76,7 +76,7 @@
     font-family: 'FontAwesome';
 }
 
-.navbar-toggleable-md .navbar-nav .nav-link {
+.navbar-collapse .navbar-nav .nav-link {
     padding-left: 0.8rem;
     padding-right: 0.8rem;
 }
@@ -316,4 +316,21 @@ div.tab a:hover {
 
 .post-media img {
     width: 100%;
+}
+.toggleable-md {
+    display: none; 
+}
+
+@media screen and (max-width: 900px) {
+    .navbar-inverse .navbar-toggler {
+
+        display: flex;
+    }
+
+    .toggleable-md {
+        display: unset;
+    }
+    .navbar-toggleable-md{
+        display: none!important;
+    }
 }

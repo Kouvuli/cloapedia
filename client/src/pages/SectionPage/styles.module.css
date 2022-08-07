@@ -97,37 +97,7 @@
     align-items: center;
 }
 
-.search-form .form-control {
-    margin: 0;
-    min-width: 240px;
-    border-right: 0;
-}
 
-.search-form .form-control {
-    border-radius: 0;
-
-    border: 1px solid #edeff2;
-    font-size: 12px;
-    min-height: 45px;
-    text-transform: none;
-    font-weight: 400;
-}
-
-.search-form a:hover,
-.search-form a:focus,
-.search-form a {
-    padding: 0;
-    border-color: #edeff2 !important;
-    height: 45px;
-    position: absolute;
-    border-radius: 0 !important;
-    background-color: #edeff2 !important;
-    right: 0;
-    color: #a3a5a8 !important;
-    width: 45px;
-    line-height: 45px;
-    margin-left: 0;
-}
 .sidebar .widget ul {
     list-style: none;
     margin: 0;

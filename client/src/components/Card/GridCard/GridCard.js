@@ -6,6 +6,7 @@ import { toDate } from "../../../utils"
 import { BASE_URL } from "../../../constants"
 import _ from "lodash"
 import parse from "html-react-parser"
+import DefaultImage from "../../../assets/images/default-image.png"
 const GridCard = ({ md = "6", xs = "12", data }) => {
   return (
     <>
@@ -14,7 +15,13 @@ const GridCard = ({ md = "6", xs = "12", data }) => {
           <div className={styles["blog-box"]}>
             <div className={styles["post-media"]}>
               <a href={`${BASE_URL}/${data.id}`} title="">
-                <img src={data.fields.thumbnail} alt="" className="img-fluid" />
+                <img
+                  src={
+                    data.fields.thumbnail ? data.fields.thumbnail : DefaultImage
+                  }
+                  alt=""
+                  className="img-fluid"
+                />
                 <div className={styles.hovereffect}>
                   <span></span>
                 </div>

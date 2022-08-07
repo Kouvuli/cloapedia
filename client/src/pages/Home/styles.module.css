@@ -21,8 +21,14 @@
     width: 33.33333%;
 }
 
-.left-side .post-media ,.right-side .post-media{
-    height: 460px;
+.left-side .post-media,.right-side .post-media{
+    height: 500px!important;
+}
+.center-side .post-media{
+    height: 300px
+}
+.center-side .small-box{
+    height:200px
 }
 
 .post-media {
@@ -188,4 +194,19 @@
 hr.invis1 {
     border: 0;
     margin: 4rem 0;
+}
+@media only screen and (max-width:1200px) {
+
+    .center-side,.left-side{
+        width: 50%;
+    }
+    .right-side{
+        width: 100%;
+    }
+}
+@media only screen and (max-width:900px) {
+
+    .left-side,.right-side,.center-side  {
+        width: 100%;
+    }
 }

@@ -4,6 +4,7 @@ import pic from "../../../assets/images/upload/blog_01.jpg"
 import { Grid } from "@mui/material"
 import { BASE_URL } from "../../../constants"
 import { toDate } from "../../../utils"
+import DefaultImage from "../../../assets/images/default-image.png"
 const VerticalCard = ({ data }) => {
   return (
     <>
@@ -12,7 +13,9 @@ const VerticalCard = ({ data }) => {
           <div className={styles["post-media"]}>
             <a href={`${BASE_URL}/${data.id}`} title="">
               <img
-                src={data.fields.thumbnail}
+                src={
+                  data.fields.thumbnail ? data.fields.thumbnail : DefaultImage
+                }
                 alt=""
                 className={styles["img-fluid"]}
               />

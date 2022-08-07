@@ -6,6 +6,7 @@ import { BASE_URL } from "../../../constants"
 import _ from "lodash"
 import { toDate } from "../../../utils"
 import parse from "html-react-parser"
+import DefaultImage from "../../../assets/images/default-image.png"
 const BigListCard = ({ data }) => {
   return (
     <>
@@ -14,7 +15,13 @@ const BigListCard = ({ data }) => {
           <div className={styles["blog-box"]}>
             <div className={styles["post-media"]}>
               <a href={`${BASE_URL}/${data.id}`} title="">
-                <img src={data.fields.thumbnail} alt="" className="img-fluid" />
+                <img
+                  src={
+                    data.fields.thumbnail ? data.fields.thumbnail : DefaultImage
+                  }
+                  alt=""
+                  className="img-fluid"
+                />
                 <div className={styles.hovereffect}>
                   <span></span>
                 </div>

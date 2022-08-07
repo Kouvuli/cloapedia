@@ -31,12 +31,13 @@ const Footer = () => {
     <footer className={styles.footer}>
       <Grid
         maxWidth="1170px"
-        marginLeft="auto"
-        marginRight="auto"
+        marginLeft={{ lg: "auto", xs: "0px" }}
+        marginRight={{ lg: "auto", xs: "0px" }}
+        padding={{ lg: "0px", md: "0 20px", xs: "0px 10px" }}
         container
-        columnSpacing={3}
+        columnSpacing={{ lg: "24px" }}
       >
-        <Grid item lg={4} sm={12}>
+        <Grid item lg={4} xs={12}>
           <div className={styles.widget}>
             <h2 className={styles["widget-title"]}>Most Popular</h2>
             <div className={styles["blog-list-widget"]}>
@@ -50,7 +51,7 @@ const Footer = () => {
           </div>
         </Grid>
 
-        <Grid item lg={4} sm={12}>
+        <Grid item lg={4} xs={12}>
           <div className={styles.widget}>
             <h2 className={styles["widget-title"]}>Most Views</h2>
             <div className={styles["blog-list-widget"]}>
@@ -64,7 +65,7 @@ const Footer = () => {
           </div>
         </Grid>
 
-        <Grid item lg={4} sm={12}>
+        <Grid item lg={4} xs={12}>
           <div className={styles["widget"]}>
             <h2 className={styles["widget-title"]}>Popular Sections</h2>
             <div className={styles["link-widget"]}>

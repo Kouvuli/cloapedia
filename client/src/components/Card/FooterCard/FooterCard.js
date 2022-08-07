@@ -3,6 +3,7 @@ import React from "react"
 import { BASE_URL } from "../../../constants"
 import { toDate } from "../../../utils"
 import styles from "./styles.module.css"
+import DefaultImage from "../../../assets/images/default-image.png"
 const FooterCard = ({ data }) => {
   const newURL = data.url.split("https://www.theguardian.com/")
   return (
@@ -10,10 +11,10 @@ const FooterCard = ({ data }) => {
       <div
         className={`${styles["w-100"]} ${styles["justify-content-between"]}`}
       >
-        <Grid container columnSpacing={0} rowSpacing={0}>
+        <Grid container columnSpacing={3} rowSpacing={0}>
           <Grid item xs={4}>
             <img
-              src={data.image}
+              src={data.image ? data.image : DefaultImage}
               alt=""
               className={`${styles["img-fluid"]} ${styles["float-left"]}`}
             />

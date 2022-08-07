@@ -78,19 +78,21 @@ const SectionPage = () => {
         <Grid
           container
           maxWidth="1170px"
-          marginRight="auto"
-          marginLeft="auto"
+          marginLeft={{ lg: "auto", xs: "0px" }}
+          marginRight={{ lg: "auto", xs: "0px" }}
+          padding={{ lg: "0px", md: "0 20px", xs: "0px 10px" }}
           justifyContent="center"
+          spacing={0}
         >
-          <Grid item md={8} xs={12}>
+          <Grid item xs={12}>
             <h2>
               <i className="fa fa-shopping-bag bg-red"></i> {title}{" "}
               <small className="hidden-xs-down hidden-sm-down"></small>
             </h2>
           </Grid>
-          <Grid item md={4} xs={12}>
+          {/* <Grid item md={4} xs={12}>
             <BreadCrumb />
-          </Grid>
+          </Grid> */}
         </Grid>
       </div>
 
@@ -98,11 +100,12 @@ const SectionPage = () => {
         <Grid
           container
           maxWidth="1170px"
-          marginRight="auto"
-          marginLeft="auto"
+          marginLeft={{ lg: "auto", xs: "0px" }}
+          marginRight={{ lg: "auto", xs: "0px" }}
+          padding={{ lg: "0px", md: "0 20px", xs: "0px 10px" }}
           justifyContent="center"
           rowSpacing={3}
-          columnSpacing={3}
+          columnSpacing={{ lg: "24px" }}
           marginBottom="100px"
         >
           <Grid item lg={9} xs={12}>
@@ -163,24 +166,6 @@ const SectionPage = () => {
           </Grid>
           <Grid item xs={12} lg={3}>
             <div className={styles.sidebar}>
-              <div className={styles.widget}>
-                <h2 className={styles["widget-title"]}>Search</h2>
-                <form
-                  className={`${styles["form-inline"]} ${styles["search-form"]}`}
-                >
-                  <div className={styles["form-group"]}>
-                    <input
-                      type="text"
-                      className={styles["form-control"]}
-                      placeholder="Search on the site"
-                    />
-                  </div>
-                  <RectangleButton>
-                    <i className="fa fa-search"></i>
-                  </RectangleButton>
-                </form>
-              </div>
-
               <div className={styles.widget}>
                 <h2 className={styles["widget-title"]}>Most Read</h2>
                 <div className={styles["blog-list-widget"]}>

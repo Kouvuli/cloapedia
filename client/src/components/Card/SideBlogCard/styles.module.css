@@ -17,18 +17,20 @@
 .list-group-item img {
     background: #fff none repeat scroll 0 0;
     margin-top: 3px;
-    max-width: 77px;
+    /* padding-right: 10px; */
+    /* display:block; */
+    max-width: 100%;
     /* width: 55px; */
     padding: 0;
 }
 
-.float-left {
+/* .float-left {
     float: left !important;
-}
-/* .img-fluid{
-    height:100px;
-    object-fit:cover;
 } */
+.img-fluid{
+    max-height:100%;
+    /* object-fit:cover; */
+}
 
 .mb-1 {
     font-size: 15px;
