@@ -3,6 +3,7 @@ import BlogDetail from "../pages/BlogDetail"
 import SectionPage from "../pages/SectionPage/SectionPage"
 import Home from "../pages/Home"
 import SearchResultPage from "../pages/SearchResultPage"
+import Editor from "../pages/Editor"
 // import AnimeDetail from "../screens/AnimeDetail"
 // import Login from "../screens/Login/Login"
 // import AnimeTop from "../screens/AnimeTop"
@@ -62,6 +63,7 @@ const PATHS = {
   EUROPE_TRAVEL: "/travel/europe",
   USA_TRAVEL: "/travel/usa",
 
+  BLOG: "/blog",
   SEARCH: "/search",
   SIGNUP: "/signup",
   LOGIN: "/login",
@@ -426,8 +428,18 @@ const routes = [
   },
   {
     exact: true,
-    path: PATHS.US_TRAVEL,
+    path: PATHS.USA_TRAVEL,
     component: SectionPage
+  },
+  {
+    exact: true,
+    path: `${PATHS.BLOG}/overview`,
+    component: SectionPage
+  },
+  {
+    exact: true,
+    path: `${PATHS.BLOG}/editor/new`,
+    component: Editor
   }
 ]
 

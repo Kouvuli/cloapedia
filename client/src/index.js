@@ -8,13 +8,11 @@ import store from "./redux/store"
 import { Theme } from "./themes"
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
-  <React.StrictMode>
-    <ThemeProvider theme={Theme}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </ThemeProvider>
-  </React.StrictMode>
+  <ThemeProvider theme={Theme}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ThemeProvider>
 )
 
 // If you want to start measuring performance in your app, pass a function

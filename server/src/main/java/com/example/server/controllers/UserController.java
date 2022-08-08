@@ -2,7 +2,7 @@ package com.example.server.controllers;
 
 import com.example.server.models.Pagination;
 import com.example.server.models.User;
-import com.example.server.payloads.response.ResponeObject;
+import com.example.server.payloads.response.ResponseObject;
 import com.example.server.payloads.response.ResponseObjectPagination;
 import com.example.server.services.UserService;
 import org.springframework.data.domain.Page;
@@ -39,20 +39,20 @@ public class UserController {
         );
     }
     @GetMapping("/{id}")
-    ResponseEntity<ResponeObject> getUserById(@PathVariable int id){
+    ResponseEntity<ResponseObject> getUserById(@PathVariable int id){
         Optional<User> user=userService.getUserById(id);
         return user.isPresent()?
                 ResponseEntity.status(HttpStatus.OK).body(
-                        new ResponeObject("ok","Query reaction succesfully",user)
+                        new ResponseObject("ok","Query reaction succesfully",user)
                 ):
                 ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                        new ResponeObject("failed","Cannot find reaction with id="+id,"")
+                        new ResponseObject("failed","Cannot find reaction with id="+id,"")
                 );
     }
 
 
     @PutMapping("/{id}")
-    ResponseEntity<ResponeObject> updateUser(@RequestBody User newUser, @PathVariable int id){
+    ResponseEntity<ResponseObject> updateUser(@RequestBody User newUser, @PathVariable int id){
         User updatedUser= userService.getUserById(id)
                 .map(user->{
                     user.setAddress(newUser.getAddress());
@@ -66,7 +66,7 @@ public class UserController {
                     return userService.addUser(newUser);
                 });
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponeObject("ok","Update User successfully",userService.addUser(updatedUser))
+                new ResponseObject("ok","Update User successfully",userService.addUser(updatedUser))
         );
     }
 }
