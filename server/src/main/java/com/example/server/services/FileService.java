@@ -68,7 +68,12 @@ public class FileService {
             throw new RuntimeException("Failed to store file",e);
         }
     }
-
+    public byte[] readFileNotSaved(MultipartFile file) throws IOException {
+        InputStream initialStream = file.getInputStream();
+        byte[] buffer = new byte[initialStream.available()];
+        initialStream.read(buffer);
+        return buffer;
+    }
     public byte[] readFileContent(String fileName){
         try{
             Path file =storageFolder.resolve(fileName);
