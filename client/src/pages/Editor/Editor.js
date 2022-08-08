@@ -9,7 +9,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic"
 
 const TextEditor = ({ onSubmit }) => {
   const [body, setBody] = useState("")
-  const API_URl = "http://localhost:9090"
+  const API_URl = "https://cloapedia-server.herokuapp.com"
   const UPLOAD_ENDPOINT = "api/v1/file"
   const handleSubmit = (e) => {
     e.preventDefault()
