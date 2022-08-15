@@ -170,6 +170,6 @@
 
 
 
-# 3. Hosts:
+# 4. Hosts:
 - Server Host: https://cloapedia-server.herokuapp.com/
 
