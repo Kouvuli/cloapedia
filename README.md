@@ -24,15 +24,15 @@ Website xem tin tức, thời trang, lối sống,... của tạp chí Cloapedia
 ### Thông tin Database (PostgreSQL):
 | Name     | Database Credential                                                                                                                                      |
 | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Host     | ec2-52-22-136-117.compute-1.amazonaws.com                                                                                                                |
-| Database | d79eaot5g8kepb                                                                                                                                           | 
-| User     | uhktxkcnjqsfcy                                                                                                                                           |
+| Host     | ec2-34-193-44-192.compute-1.amazonaws.com                                                                                                                |
+| Database | d1nbqd4gh8jhbd                                                                                                                                           | 
+| User     | bcnrawdcqdpjbg                                                                                                                                           |
 | Port     | 5432                                                                                                                                                     | 
-| Password | afbd21c5aac9f19ed81b814466bebea1f6f06a26213a85397156d231439e4a18
+| Password | ef2679725c21ca13bc2a758e7b2bb37600f943d06a6399ee09577ffa063678c4
 
 ## 4. Deploy endpoints:
--   Client: https://splendid-client-xi.vercel.app
--   Server: https://splendid-app-server.herokuapp.com/api/v1
+-   Client: https://cloapedia.vercel.app
+-   Server: https://cloapedia-server.herokuapp.com/api/v1
 
 ## 5. API Documentations:
 -   Sử dụng 2 API: Guardian API, Cloapedia API.
