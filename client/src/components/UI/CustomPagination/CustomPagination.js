@@ -10,9 +10,14 @@ import { useDispatch, useSelector } from "react-redux"
 import Pagination from "@mui/material/Pagination"
 import PaginationItem from "@mui/material/PaginationItem"
 import sectionSlice from "../../../redux/reducers/sectionSlice"
-import { searchSelector, sectionSelector } from "../../../redux/selectors"
+import {
+  blogSelector,
+  searchSelector,
+  sectionSelector
+} from "../../../redux/selectors"
 import { styled } from "@mui/material/styles"
 import searchSlice from "../../../redux/reducers/searchSlice"
+import blogSlice from "../../../redux/reducers/blogSlice"
 const CustomPaginationItem = styled(PaginationItem)(({ theme }) => ({
   // color: "#ffffff",
   "&.Mui-selected": {
@@ -25,6 +30,9 @@ const Content = ({ type }) => {
   if (type === "search") {
     slice = searchSlice
     selector = searchSelector
+  } else if (type === "blog") {
+    slice = blogSlice
+    selector = blogSelector
   } else {
     slice = sectionSlice
     selector = sectionSelector

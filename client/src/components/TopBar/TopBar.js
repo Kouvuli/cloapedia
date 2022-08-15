@@ -27,7 +27,7 @@ const TopBar = () => {
                 data-placement="bottom"
                 title="Facebook"
               >
-                <i class="bx bxl-facebook-square"></i>
+                <i className="bx bxl-facebook-square"></i>
               </a>
               <a
                 href="#"
@@ -35,7 +35,7 @@ const TopBar = () => {
                 data-placement="bottom"
                 title="Youtube"
               >
-                <i class="bx bxl-youtube"></i>
+                <i className="bx bxl-youtube"></i>
               </a>
               <a
                 href="#"
@@ -43,7 +43,7 @@ const TopBar = () => {
                 data-placement="bottom"
                 title="Twitter"
               >
-                <i class="bx bxl-twitter"></i>
+                <i className="bx bxl-twitter"></i>
               </a>
               <a
                 href="#"
@@ -51,7 +51,7 @@ const TopBar = () => {
                 data-placement="bottom"
                 title="Instagram"
               >
-                <i class="bx bxl-instagram-alt"></i>
+                <i className="bx bxl-instagram-alt"></i>
               </a>
             </div>
           </Grid>
@@ -65,18 +65,18 @@ const TopBar = () => {
             <div className={`${styles["topmenu"]} ${styles["text-center"]}`}>
               <ul className={styles["list-inline"]}>
                 <li className={styles["list-inline-item"]}>
-                  <a href="blog-category-01.html">
-                    <i className="fa fa-star"></i> Trends
+                  <a href="/blog">
+                    <i className="bx bx-bold"></i> Our blogs
                   </a>
                 </li>
                 <li className={styles["list-inline-item"]}>
-                  <a href="blog-category-02.html">
-                    <i className="fa fa-bolt"></i> Hot Topics
+                  <a href="/blog/editor/new">
+                    <i className="bx bxs-pen"></i> Write for us
                   </a>
                 </li>
                 <li className={styles["list-inline-item"]}>
-                  <a href="page-contact.html">
-                    <i className="fa fa-user-circle-o"></i> Write for us
+                  <a href="/profile">
+                    <i className="bx bxs-user"></i> Your account
                   </a>
                 </li>
               </ul>
@@ -91,7 +91,7 @@ const TopBar = () => {
                 aria-controls="collapseExample"
                 onClick={searchHandler}
               >
-                <i class="bx bx-search"></i> Search
+                <i className="bx bx-search"></i> Search
               </a>
             </div>
           </Grid>

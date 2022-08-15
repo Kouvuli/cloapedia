@@ -5,7 +5,20 @@ import Loading from "../../Loading"
 import LoadingCardSkeleton from "../../LoadingCardSkeleton"
 import ResultNotFound from "../../ResultNotFound"
 
-const BigList = ({ loading, data, error }) => {
+const BigList = ({ loading, data, type = "default", error }) => {
+  const convertData = (data) => {
+    return {
+      id: `blog/${data.id}`,
+      sectionName: "blog",
+      fields: {
+        thumbnail: data.thumbnail,
+        headline: data.headline,
+        trailText: data.trail_text ? data.trail_text : "",
+        lastModified: data.create_at,
+        byline: data.author.username
+      }
+    }
+  }
   return (
     <Grid container columnSpacing={3}>
       {loading && (
@@ -16,6 +29,9 @@ const BigList = ({ loading, data, error }) => {
       )}
       {!loading &&
         data.map((value, i) => {
+          if (type === "blog") {
+            value = convertData(value)
+          }
           return <BigListCard key={i} data={value} />
         })}
       {error && <ResultNotFound message={error.message} />}

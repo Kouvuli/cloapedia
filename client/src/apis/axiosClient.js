@@ -1,6 +1,6 @@
 import axios from "axios"
 import queryString from "query-string"
-import { GUARDIAN_NEXT_GEN_API } from "./baseURL"
+import { CLOAPEDIA_API, GUARDIAN_NEXT_GEN_API } from "./baseURL"
 
 const request = (url) => {
   const axiosClient = axios.create({
@@ -12,7 +12,10 @@ const request = (url) => {
   })
 
   axiosClient.interceptors.request.use(async (config) => {
-    if (config.baseURL === GUARDIAN_NEXT_GEN_API) {
+    if (
+      config.baseURL === GUARDIAN_NEXT_GEN_API ||
+      config.baseURL === CLOAPEDIA_API
+    ) {
       return config
     }
     config.params = {

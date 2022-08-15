@@ -14,3 +14,7 @@ export const timeSince = (date) => {
 export const toDate = (strDate) => {
   return moment(strDate).format("DD MMM, YYYY")
 }
+
+export const timeDiffFromNow = (date) => {
+  return moment(date).diff(moment().format())
+}

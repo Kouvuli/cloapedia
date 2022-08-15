@@ -8,13 +8,19 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 import { useSelector, useDispatch } from "react-redux"
 import sectionSlice from "../../../../redux/reducers/sectionSlice"
 import { sectionSelector } from "../../../../redux/selectors"
-const ToggleButtons = () => {
+import blogSlice from "../../../../redux/reducers/blogSlice"
+const ToggleButtons = ({ type = "default" }) => {
   //   const { viewType } = useSelector(sectionSelector)
   const [cardType, setCardType] = React.useState("small")
   const dispatch = useDispatch()
-
+  var slice
+  if (type === "blog") {
+    slice = blogSlice
+  } else {
+    slice = sectionSlice
+  }
   const handleToggle = (event, newCardType) => {
-    dispatch(sectionSlice.actions.changeViewType(newCardType))
+    dispatch(slice.actions.changeViewType(newCardType))
     setCardType(newCardType)
   }
 

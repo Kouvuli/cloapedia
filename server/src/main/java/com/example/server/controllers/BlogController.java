@@ -1,11 +1,11 @@
 package com.example.server.controllers;
 
 
+import com.example.server.models.Blog;
 import com.example.server.models.Pagination;
-import com.example.server.models.Post;
 import com.example.server.payloads.response.ResponseObject;
 import com.example.server.payloads.response.ResponseObjectPagination;
-import com.example.server.services.PostService;
+import com.example.server.services.BlogService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +21,10 @@ public class PostController {
 
 
 
-    private final PostService postService;
+    private final BlogService blogService;
 
-    public PostController(PostService postService) {
-        this.postService = postService;
+    public PostController(BlogService blogService) {
+        this.blogService = blogService;
     }
 
 
@@ -40,7 +40,7 @@ public class PostController {
                     new ResponseObjectPagination(new Pagination(),"failed","Cannot find post","")
             );
         }
-        Page<Post> postPage=postService.getPost(authorId,page,limit);
+        Page<Blog> postPage= blogService.getBlog(authorId,page,limit);
         return ResponseEntity.status(HttpStatus.OK).body(
                 new ResponseObjectPagination(new Pagination(postPage.getTotalPages(),postPage.hasNext(),page,limit),"ok","",postPage.getContent())
                 );
@@ -48,7 +48,7 @@ public class PostController {
 
     @GetMapping("/{id}")
     ResponseEntity<ResponseObject> getPostById(@PathVariable int id){
-        Optional<Post> post=postService.getPostById(id);
+        Optional<Blog> post= blogService.getBlogById(id);
 
         return post.isPresent()?
              ResponseEntity.status(HttpStatus.OK).body(
@@ -60,37 +60,37 @@ public class PostController {
     }
 
     @PostMapping("")
-    ResponseEntity<ResponseObject> insertPost(@RequestBody Post newPost){
-        int authorId =newPost.getAuthor().getId();
-        newPost.setAuthor(postService.getUserById(authorId));
-        newPost.setCreateAt(new Timestamp(System.currentTimeMillis()));
+    ResponseEntity<ResponseObject> insertPost(@RequestBody Blog newBlog){
+        int authorId = newBlog.getAuthor().getId();
+        newBlog.setAuthor(blogService.getUserById(authorId));
+        newBlog.setCreateAt(new Timestamp(System.currentTimeMillis()));
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject("ok","Insert post succesfully",postService.addPost(newPost))
+                new ResponseObject("ok","Insert post succesfully", blogService.addBlog(newBlog))
         );
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<ResponseObject> updatePost(@RequestBody Post newPost, @PathVariable int id){
-        Post updatedPost= postService.getPostById(id)
+    ResponseEntity<ResponseObject> updatePost(@RequestBody Blog newBlog, @PathVariable int id){
+        Blog updatedBlog = blogService.getBlogById(id)
                 .map(post->{
-                    post.setContent(newPost.getContent());
-                    post.setTitle(newPost.getTitle());
+                    post.setContent(newBlog.getContent());
+                    post.setTitle(newBlog.getTitle());
                     post.setCreateAt(new Timestamp(System.currentTimeMillis()));
-                    return postService.addPost(post);
+                    return blogService.addBlog(post);
                 }).orElseGet(()->{
-                    newPost.setId(id);
-                    return postService.addPost(newPost);
+                    newBlog.setId(id);
+                    return blogService.addBlog(newBlog);
                 });
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject("ok","Update Post successfully",postService.addPost(updatedPost))
+                new ResponseObject("ok","Update Post successfully", blogService.addBlog(updatedBlog))
         );
     }
 
     @DeleteMapping("/{id}")
     ResponseEntity<ResponseObject> deletePost(@PathVariable int id){
-        boolean exists=postService.ifPostExists(id);
+        boolean exists= blogService.ifBlogExists(id);
         if(exists){
-            postService.deletePostById(id);
+            blogService.deleteBlogById(id);
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok","Deleted post succesfully","")
             );

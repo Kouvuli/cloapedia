@@ -1,0 +1,127 @@
+.wb {
+    background-color: #ffffff;
+    border-top: 1px dashed #dadada;
+}
+
+.page-title {
+    padding: 3rem 0;
+
+}
+
+.page-title h2 {
+    font-size: 24px;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+}
+
+.page-title i {
+    color: #ffffff !important;
+    background-color: rgb(0, 123, 255) !important;
+    border-radius: 40px;
+    display: inline-block;
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 0.3rem;
+    margin-top: -0.4rem;
+    text-align: center;
+    vertical-align: middle;
+    width: 40px;
+}
+
+.page-title small {
+    color: #a3a5a8;
+    display: inline-block;
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 0;
+    margin-top: -1px;
+    padding-bottom: 0;
+    padding-left: 0.5rem;
+    vertical-align: middle;
+    font-weight: 400;
+}
+
+.section {
+    padding: 4rem 0;
+    display: block;
+    position: relative;
+    background-color: #ffffff;
+}
+
+.sidebar .widget {
+    position: relative;
+    display: block;
+    margin-bottom: 3rem;
+}
+
+.sidebar .widget-title {
+    display: block;
+    font-size: 18px;
+    margin: 0 0 2rem;
+    padding: 0;
+    line-height: 1;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-color: #fff;
+    background-image: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .25rem;
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+}
+
+.form-inline {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+
+.sidebar .widget ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar a {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.link-widget li span {
+    position: absolute;
+    right: 0;
+}
+
+.link-widget li {
+    padding: 0.4rem 0.2rem 0.6rem;
+    text-transform: capitalize;
+    line-height: 1;
+    font-weight: 500;
+    position: relative;
+    margin: 0;
+    border-bottom: 1px dashed #dadada;
+}

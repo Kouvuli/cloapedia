@@ -1,6 +1,6 @@
 package com.example.server.repositories;
 
-import com.example.server.models.Post;
+import com.example.server.models.Blog;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -29,10 +29,10 @@ public class PostCriteriaRepository {
         this.cb = entityManager.getCriteriaBuilder();
     }
 
-    public Page<Post> findPostWithFilterPagination(String authorId, int page, int limit){
-        CriteriaQuery<Post> query=cb.createQuery(Post.class);
+    public Page<Blog> findPostWithFilterPagination(String authorId, int page, int limit){
+        CriteriaQuery<Blog> query=cb.createQuery(Blog.class);
 
-        Root<Post> root=query.from(Post.class);
+        Root<Blog> root=query.from(Blog.class);
         List<Predicate> predicates=new ArrayList<>();
         if(authorId!=null){
             predicates.add(cb.equal(root.get("author").get("id"),authorId));
@@ -43,7 +43,7 @@ public class PostCriteriaRepository {
         query.orderBy(cb.desc(root.get("createAt")));
         query.where(predicate);
 
-        TypedQuery<Post> typedQuery=entityManager.createQuery(query);
+        TypedQuery<Blog> typedQuery=entityManager.createQuery(query);
         typedQuery.setFirstResult((page-1)*limit);
         typedQuery.setMaxResults(limit);
 
@@ -56,7 +56,7 @@ public class PostCriteriaRepository {
 
     private long getPostCount(Predicate predicate){
         CriteriaQuery<Long> countQuery=cb.createQuery(Long.class);
-        Root<Post>  countRoot=countQuery.from(Post.class);
+        Root<Blog>  countRoot=countQuery.from(Blog.class);
         countQuery.select(cb.count(countRoot)).where(predicate);
         return entityManager.createQuery(countQuery).getSingleResult();
     }

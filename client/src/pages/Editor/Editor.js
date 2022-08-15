@@ -1,47 +1,93 @@
 import { Grid } from "@mui/material"
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 // import { EditorState } from "draft-js"
 // import { Editor } from "react-draft-wysiwyg"
 // import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 import { CKEditor } from "@ckeditor/ckeditor5-react"
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic"
 // import "draft-js/dist/Draft.css"
-
+import blogSlice, {
+  createBlog,
+  uploadImage
+} from "../../redux/reducers/blogSlice"
+import { useDispatch, useSelector } from "react-redux"
+// import MediaEmbed from "@ckeditor/ckeditor5-media-embed/src/mediaembed"
+import styles from "./styles.module.scss"
+import DefaultThumbnail from "../../assets/images/default-thumbnail.jpg"
+import cloapediaApi from "../../apis/cloapediaApi"
+import { blogSelector } from "../../redux/selectors"
+import CustomizedSnackbars from "../../components/UI/CustomizedSnackbars/CustomizedSnackbars"
 const TextEditor = ({ onSubmit }) => {
-  const [body, setBody] = useState("")
-  const API_URl = "https://cloapedia-server.herokuapp.com"
-  const UPLOAD_ENDPOINT = "api/v1/file"
+  const dispatch = useDispatch()
+  const { currentUser, loading, error, success } = useSelector(blogSelector)
+  const [content, setContent] = useState("")
+
+  const [headline, setHeadline] = useState("")
+  const [trailText, setTrailText] = useState("")
+  const [thumbnail, setThumbnail] = useState(null)
+
+  const thumbnailRef = useRef(null)
+
+  useEffect(() => {
+    dispatch(
+      blogSlice.actions.addUser(JSON.parse(localStorage.getItem("user")))
+    )
+  }, [])
   const handleSubmit = (e) => {
     e.preventDefault()
-    onSubmit({ body })
+    if (
+      content === "" ||
+      headline === "" ||
+      trailText === "" ||
+      thumbnail == null
+    ) {
+      return false
+    }
+    const body = new FormData()
+
+    body.append("file", thumbnail)
+    cloapediaApi.uploadFile(body).then((res) => {
+      dispatch(
+        createBlog({
+          author: { id: currentUser.id },
+          headline,
+          trail_text: trailText,
+          thumbnail: res.data,
+          content
+        })
+      )
+    })
   }
   const uploadAdapter = (loader) => {
     return {
       upload: () => {
         return new Promise((resolve, reject) => {
           const body = new FormData()
+
           loader.file.then((file) => {
             body.append("file", file)
-            fetch(`${API_URl}/${UPLOAD_ENDPOINT}`, {
-              method: "post",
-              headers: {
-                Authorization:
-                  "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnb2RvZndhciIsImlhdCI6MTY1OTk2Njk5MiwiZXhwIjoxNjYwMDUzMzkyfQ.7-WJsU-vJc2qaz5pFihTxjS2AltZ-wJWHnwR1WxY54CwRKfuZhUiKmVGdKCXajYblIY6h-3zj_Gf-HIY9sjbhw"
-              },
-              body: body
-            })
-              .then((res) => res.json())
-              .then((res) => {
-                resolve({
-                  default: `${API_URl}/${UPLOAD_ENDPOINT}/uploads/${res.data}`
+            try {
+              cloapediaApi
+                .uploadFile(body)
+                .then((res) => {
+                  resolve({
+                    default: res.data
+                  })
                 })
-              })
-              .catch((err) => {
-                reject(err)
-              })
+                .catch((err) => {
+                  reject(err)
+                })
+            } catch (err) {}
           })
         })
       }
+    }
+  }
+  const thumbnailHandler = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      thumbnailRef.current.src = URL.createObjectURL(file)
+      setThumbnail(file)
     }
   }
   // ClassicEditor.defaultConfig = {
@@ -69,18 +115,67 @@ const TextEditor = ({ onSubmit }) => {
     }
   }
   return (
-    <Grid container justifyContent="center" padding={{ xs: "10px", sm: "0px" }}>
+    <Grid
+      container
+      justifyContent="center"
+      marginTop="20px"
+      marginBottom="60px"
+      padding={{ xs: "10px", sm: "0px" }}
+    >
       <Grid item md={6} sm={9} xs={12}>
-        <form className="form-group" onSubmit={handleSubmit}>
+        {success && (
+          <CustomizedSnackbars
+            title="Insert new blog successfully!"
+            type="success"
+          />
+        )}
+        {error && (
+          <CustomizedSnackbars title="Insert new blog failed!" type="error" />
+        )}
+        <form className="form-group">
           <div className="form-group">
-            <label>Title</label>
-            <input type="text" className="form-control" />
+            <label>Headline</label>
+            <input
+              type="text"
+              className="form-control"
+              value={headline}
+              onChange={(e) => {
+                setHeadline(e.target.value)
+              }}
+            />
+          </div>
+          <div className="form-group">
+            <label>Trailer Text</label>
+            <input
+              className="form-control"
+              value={trailText}
+              onChange={(e) => {
+                setTrailText(e.target.value)
+              }}
+            />
+          </div>
+          <div className="form-group">
+            <label>Thumbnail</label>
+            <img
+              ref={thumbnailRef}
+              src={DefaultThumbnail}
+              alt="thumbnail"
+              className={styles["thumbnail"]}
+            />
+            <input
+              type="file"
+              className="form-control"
+              onChange={thumbnailHandler}
+            />
           </div>
           <div className="form-group">
             <label>Content</label>
             <CKEditor
               config={{
-                extraPlugins: [uploadPlugin]
+                extraPlugins: [uploadPlugin],
+                mediaEmbed: {
+                  previewsInData: true
+                }
 
                 // toolbar: {
                 //   items: [
@@ -102,8 +197,7 @@ const TextEditor = ({ onSubmit }) => {
               editor={ClassicEditor}
               onChange={(event, editor) => {
                 const data = editor.getData()
-                setBody(data)
-                console.log(data)
+                setContent(data)
               }}
             />
           </div>
@@ -111,7 +205,7 @@ const TextEditor = ({ onSubmit }) => {
           <button
             style={{ width: "100%" }}
             className="btn btn-primary"
-            type="submit"
+            onClick={handleSubmit}
           >
             Submit
           </button>

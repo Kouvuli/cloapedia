@@ -3,7 +3,13 @@ import Grid from "@mui/material/Grid"
 import CardSkeleton from "../UI/CardSkeleton"
 // import useCardMediaQuery from "../../hooks/useCardMediaQuery"
 
-export default function Loading({ size, xs = "12", sm = "5", md = "4", type }) {
+export default function LoadingCardSkeleton({
+  size,
+  xs = 12,
+  sm = 5,
+  md = 4,
+  type
+}) {
   const dummy = new Array(size).fill(0)
   return (
     <>

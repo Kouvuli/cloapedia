@@ -30,13 +30,14 @@ const SearchResultPage = () => {
         <Grid
           container
           maxWidth="1170px"
-          marginRight="auto"
-          marginLeft="auto"
+          marginLeft={{ lg: "auto", xs: "0px" }}
+          marginRight={{ lg: "auto", xs: "0px" }}
+          padding={{ md: "0 20px", xs: "0 10px" }}
           justifyContent="center"
         >
           <Grid item xs={12}>
             <h2>
-              <i className="fa fa-shopping-bag bg-red"></i> Search Result{" "}
+              <i className="bx bx-search-alt-2"></i> Search Result{" "}
             </h2>
           </Grid>
         </Grid>
@@ -46,10 +47,11 @@ const SearchResultPage = () => {
         <Grid
           container
           maxWidth="1170px"
-          marginRight="auto"
-          marginLeft="auto"
+          marginLeft={{ lg: "auto", xs: "0px" }}
+          marginRight={{ lg: "auto", xs: "0px" }}
+          padding={{ md: "0 20px", xs: "0 10px" }}
           justifyContent="center"
-          columnSpacing={3}
+          columnSpacing={{ md: 3, xs: 0 }}
           rowSpacing={3}
         >
           {loading && (

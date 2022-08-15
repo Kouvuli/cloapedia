@@ -7,7 +7,7 @@ import { BASE_URL } from "../../../constants"
 import _ from "lodash"
 import parse from "html-react-parser"
 import DefaultImage from "../../../assets/images/default-image.png"
-const GridCard = ({ md = "6", xs = "12", data }) => {
+const GridCard = ({ md = 6, xs = 12, data }) => {
   return (
     <>
       {!_.isEmpty(data) && (

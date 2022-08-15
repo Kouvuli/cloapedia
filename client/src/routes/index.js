@@ -1,20 +1,12 @@
-// import Anime from "../screens/Anime"
 import BlogDetail from "../pages/BlogDetail"
 import SectionPage from "../pages/SectionPage/SectionPage"
 import Home from "../pages/Home"
 import SearchResultPage from "../pages/SearchResultPage"
 import Editor from "../pages/Editor"
-// import AnimeDetail from "../screens/AnimeDetail"
-// import Login from "../screens/Login/Login"
-// import AnimeTop from "../screens/AnimeTop"
-// import MangaTop from "../screens/MangaTop"
-// import ComingSoon from "../screens/ComingSoon"
-// import Forum from "../screens/Forum"
-// import Character from "../screens/Character"
-// import Manga from "../screens/Manga"
-// import MangaDetail from "../screens/MangaDetail"
-// import PostDetail from "../screens/PostDetail"
-// import Profile from "../screens/Profile"
+import Blog from "../pages/Blog"
+import LoginPage from "../pages/LoginPage"
+import SignUpPage from "../pages/SignUp/SignUpPage"
+
 const PATHS = {
   WORLD: "/world",
   CORONAVIRUS: "/world/coronavirus-outbreak",
@@ -433,9 +425,27 @@ const routes = [
   },
   {
     exact: true,
-    path: `${PATHS.BLOG}/overview`,
-    component: SectionPage
+    path: PATHS.BLOG,
+    component: Blog
   },
+  {
+    exact: true,
+    path: `${PATHS.BLOG}/:id`,
+    component: BlogDetail
+  },
+  {
+    exact: true,
+    path: PATHS.SIGNUP,
+    component: SignUpPage
+  },
+  {
+    exact: true,
+    path: PATHS.LOGIN,
+    component: LoginPage
+  }
+]
+
+const authRoutes = [
   {
     exact: true,
     path: `${PATHS.BLOG}/editor/new`,
@@ -443,4 +453,4 @@ const routes = [
   }
 ]
 
-export { routes, PATHS, EXTRA_PATH }
+export { routes, PATHS, EXTRA_PATH, authRoutes }

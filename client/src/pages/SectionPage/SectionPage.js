@@ -8,7 +8,6 @@ import GridCard from "../../components/Card/GridCard"
 import ListCard from "../../components/Card/SmallListCard"
 import SideBlogCard from "../../components/Card/SideBlogCard"
 import BreadCrumb from "../../components/UI/BreadCrumb"
-import RectangleButton from "../../components/UI/Button/RectangleButton"
 import styles from "./styles.module.css"
 import {
   fetchDataBySection,
@@ -27,7 +26,7 @@ import BigList from "../../components/List/BigList/BigList"
 // import { fetchSectionCount } from "../../redux/reducers/footerSlice"
 const SectionPage = () => {
   const dispatch = useDispatch()
-  const [title, setTitle] = useState(document.location.pathname)
+  const [title, setTitle] = useState("")
   const { loading, error, data, page, limit, viewType, mostRead } =
     useSelector(sectionSelector)
   function capitalizeFirstLetter(string) {
@@ -86,7 +85,7 @@ const SectionPage = () => {
         >
           <Grid item xs={12}>
             <h2>
-              <i className="fa fa-shopping-bag bg-red"></i> {title}{" "}
+              <i className="bx bxs-food-menu"></i> {title}{" "}
               <small className="hidden-xs-down hidden-sm-down"></small>
             </h2>
           </Grid>

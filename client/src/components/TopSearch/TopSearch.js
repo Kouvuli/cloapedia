@@ -6,7 +6,7 @@ import searchSlice, { fetchSearch } from "../../redux/reducers/searchSlice"
 import { searchSelector } from "../../redux/selectors"
 import styles from "./styles.module.css"
 const TopSearch = ({ isSearch }) => {
-  const [query, setQuery] = useState(null)
+  const [query, setQuery] = useState("")
   const dispatch = useDispatch()
 
   const searchHandler = (e) => {
@@ -56,7 +56,7 @@ const TopSearch = ({ isSearch }) => {
                 // onClick={submitQuery}
                 to={`/search`}
               >
-                <i class="bx bx-search"></i>
+                <i className="bx bx-search"></i>
               </Link>
             </button>
           </form>

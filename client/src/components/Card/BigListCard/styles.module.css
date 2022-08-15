@@ -24,6 +24,8 @@
 
 .post-media img {
     width: 100%;
+    object-fit: cover;
+    max-height: 512px;
 }
 
 .img-fluid {

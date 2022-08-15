@@ -7,7 +7,6 @@ import DefaultImage from "../../../assets/images/default-image.png"
 import { toDate } from "../../../utils"
 import _ from "lodash"
 const SearchResultCard = ({ data }) => {
-  console.log(data)
   return (
     <>
       {!_.isEmpty(data) && (

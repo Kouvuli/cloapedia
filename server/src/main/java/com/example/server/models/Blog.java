@@ -31,13 +31,17 @@ public class Post {
     @JoinColumn(name = "author_id",referencedColumnName = "id")
     private User author;
 
+    private String thumbnail;
+
+    private String headline;
+
     private String title;
 
-    public Post(int id, String content, Timestamp createAt, User author, String title) {
-        this.id = id;
+    public Post(String content, User author, String thumbnail, String headline, String title) {
         this.content = content;
-        this.createAt = createAt;
         this.author = author;
+        this.thumbnail = thumbnail;
+        this.headline = headline;
         this.title = title;
     }
 
@@ -98,6 +102,22 @@ public class Post {
 
     public void setReactions(Set<Reaction> reactions) {
         this.reactions = reactions;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public String getHeadline() {
+        return headline;
+    }
+
+    public void setHeadline(String headline) {
+        this.headline = headline;
     }
 
     @Override

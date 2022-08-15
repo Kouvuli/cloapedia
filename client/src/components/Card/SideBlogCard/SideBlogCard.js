@@ -5,6 +5,7 @@ import { BASE_URL } from "../../../constants"
 import { toDate } from "../../../utils"
 import { Grid } from "@mui/material"
 import DefaultImage from "../../../assets/images/default-image.png"
+import { Link } from "react-router-dom"
 const SideBlogCard = ({ data, type }) => {
   if (type === "section") {
     const newURL = data.url.split("https://www.theguardian.com/")

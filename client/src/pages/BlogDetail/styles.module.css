@@ -158,9 +158,11 @@
     
 }
 
-.pp iframe{
+/* .pp iframe{
     display:none;
-}
+} */
+
+
 .pp figcaption span {
     font-weight: bold;
     font-size: 14px;
@@ -223,6 +225,8 @@
     margin-right: 0.5rem !important;
     padding: 0 1rem;
 }
+
+
 
 .tag-cloud-single a,
 .comments-list .media-right,
@@ -366,3 +370,25 @@ hr.invis1 {
 }
 
 
+.submit-btn{
+    color: #fff !important;
+    background-color: #111111;
+    border: 0 none;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0.8rem 2rem;
+    text-transform: none;
+    transition: all .2s ease-in-out;
+    display: inline-block;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.submit-btn:hover{
+    color: #fff !important;
+    background-color: #025aa5;
+    border-color: #01549b;
+}

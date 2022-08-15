@@ -1,6 +1,6 @@
 package com.example.server.services;
 
-import com.example.server.models.Post;
+import com.example.server.models.Blog;
 import com.example.server.models.User;
 import com.example.server.repositories.PostCriteriaRepository;
 import com.example.server.repositories.PostRepository;
@@ -27,16 +27,16 @@ public class PostService {
         this.userRepository = userRepository;
     }
 
-    public Page<Post> getPost(String authorId, int page, int limit){
+    public Page<Blog> getPost(String authorId, int page, int limit){
         return postCriteriaRepository.findPostWithFilterPagination(authorId,page,limit);
     }
 
-    public Optional<Post> getPostById(int id){
+    public Optional<Blog> getPostById(int id){
         return postRepository.findById(id);
     }
     public User getUserById(int id){return userRepository.findById(id).get();}
-    public Post addPost(Post newPost){
-        return postRepository.save(newPost);
+    public Blog addPost(Blog newBlog){
+        return postRepository.save(newBlog);
     }
 
     public void deletePostById(int id){
