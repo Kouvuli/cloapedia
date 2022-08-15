@@ -2,8 +2,8 @@ package com.example.server.services;
 
 import com.example.server.models.Blog;
 import com.example.server.models.User;
-import com.example.server.repositories.PostCriteriaRepository;
-import com.example.server.repositories.PostRepository;
+import com.example.server.repositories.BlogCriteriaRepository;
+import com.example.server.repositories.BlogRepository;
 import com.example.server.repositories.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -12,38 +12,38 @@ import java.util.Optional;
 
 
 @Service
-public class PostService {
+public class BlogService {
 
 
-    private PostRepository postRepository;
+    private BlogRepository blogRepository;
 
-    private PostCriteriaRepository postCriteriaRepository;
+    private BlogCriteriaRepository blogCriteriaRepository;
 
     private UserRepository userRepository;
 
-    public PostService(PostRepository postRepository, PostCriteriaRepository postCriteriaRepository, UserRepository userRepository) {
-        this.postRepository = postRepository;
-        this.postCriteriaRepository = postCriteriaRepository;
+    public BlogService(BlogRepository blogRepository, BlogCriteriaRepository blogCriteriaRepository, UserRepository userRepository) {
+        this.blogRepository = blogRepository;
+        this.blogCriteriaRepository = blogCriteriaRepository;
         this.userRepository = userRepository;
     }
 
-    public Page<Blog> getPost(String authorId, int page, int limit){
-        return postCriteriaRepository.findPostWithFilterPagination(authorId,page,limit);
+    public Page<Blog> getBlog(String authorId, int page, int limit){
+        return blogCriteriaRepository.findBlogWithFilterPagination(authorId,page,limit);
     }
 
-    public Optional<Blog> getPostById(int id){
-        return postRepository.findById(id);
+    public Optional<Blog> getBlogById(int id){
+        return blogRepository.findById(id);
     }
     public User getUserById(int id){return userRepository.findById(id).get();}
-    public Blog addPost(Blog newBlog){
-        return postRepository.save(newBlog);
+    public Blog addBlog(Blog newBlog){
+        return blogRepository.save(newBlog);
     }
 
-    public void deletePostById(int id){
-        postRepository.deleteById(id);
+    public void deleteBlogById(int id){
+        blogRepository.deleteById(id);
     }
 
-    public boolean ifPostExists(int id){
-        return postRepository.existsById(id);
+    public boolean ifBlogExists(int id){
+        return blogRepository.existsById(id);
     }
 }

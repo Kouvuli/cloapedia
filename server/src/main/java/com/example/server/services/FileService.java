@@ -1,5 +1,11 @@
 package com.example.server.services;
 
+import com.google.auth.Credentials;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.storage.BlobId;
+import com.google.cloud.storage.BlobInfo;
+import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.StorageOptions;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -7,9 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -68,11 +72,51 @@ public class FileService {
             throw new RuntimeException("Failed to store file",e);
         }
     }
-    public byte[] readFileNotSaved(MultipartFile file) throws IOException {
-        InputStream initialStream = file.getInputStream();
-        byte[] buffer = new byte[initialStream.available()];
-        initialStream.read(buffer);
-        return buffer;
+    private String uploadFile(File file, String fileName) throws IOException {
+        BlobId blobId = BlobId.of("cloapedia-2df04.appspot.com", fileName);
+        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
+        Credentials credentials = GoogleCredentials.fromStream(new FileInputStream("./src/main/java/com/example/server/credentials/cloapedia-2df04-firebase-adminsdk-cxxp5-60fd308109.json"));
+        Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
+        storage.create(blobInfo, Files.readAllBytes(file.toPath()));
+//        String a=URLEncoder.encode(fileName, StandardCharsets.UTF_8);
+        return String.format("https://firebasestorage.googleapis.com/v0/b/cloapedia-2df04.appspot.com/o/%s?alt=media", fileName);
+    }
+
+    private File convertToFile(MultipartFile multipartFile, String fileName) throws IOException {
+        File tempFile = new File(fileName);
+        try (FileOutputStream fos = new FileOutputStream(tempFile)) {
+            fos.write(multipartFile.getBytes());
+            fos.close();
+        }
+        return tempFile;
+    }
+
+    public String upload(MultipartFile multipartFile) {
+
+        try {
+            if(multipartFile.isEmpty()){
+                throw new RuntimeException("File is empty");
+            }
+            if(!isImageFile(multipartFile)){
+                throw new RuntimeException("This not image file");
+            }
+
+            float fileSizeInMegabytes= multipartFile.getSize()/1_000_000.0f;
+            if(fileSizeInMegabytes>5.0f){
+                throw new RuntimeException("File must be <=5.0Mb");
+            }
+            String fileName = multipartFile.getOriginalFilename();                        // to get original file name
+            fileName = UUID.randomUUID().toString().concat("."+FilenameUtils.getExtension(fileName));  // to generated random string values for file name.
+
+            File file = this.convertToFile(multipartFile, fileName);                      // to convert multipartFile to File
+            String TEMP_URL = this.uploadFile(file, fileName);                                   // to get uploaded file link
+            file.delete();                                                                // to delete the copy of uploaded file stored in the project folder
+            return TEMP_URL;                     // Your customized response
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
     public byte[] readFileContent(String fileName){
         try{

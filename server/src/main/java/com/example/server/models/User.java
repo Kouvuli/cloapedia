@@ -17,7 +17,7 @@ public class User {
 
     @OneToMany(mappedBy = "author")
     @JsonIgnore
-    private Set<Post> posts=new HashSet<>();
+    private Set<Blog> blogs =new HashSet<>();
 
     @OneToMany(mappedBy = "author")
     @JsonIgnore
@@ -65,12 +65,12 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
-    public Set<Post> getPosts() {
-        return posts;
+    public Set<Blog> getBlogs() {
+        return blogs;
     }
 
-    public void setPosts(Set<Post> posts) {
-        this.posts = posts;
+    public void setBlogs(Set<Blog> blogs) {
+        this.blogs = blogs;
     }
 
     public Set<Comment> getComments() {
@@ -158,12 +158,11 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", posts=" + posts +
-                ", comments=" + comments +
-                ", reactions=" + reactions +
                 ", fullname='" + fullname + '\'' +
                 ", dob='" + dob + '\'' +
                 ", username='" + username + '\'' +
+                ", job='" + job + '\'' +
+                ", address='" + address + '\'' +
                 ", password='" + password + '\'' +
                 ", isAdmin=" + isAdmin +
                 '}';

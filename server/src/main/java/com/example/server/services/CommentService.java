@@ -1,11 +1,11 @@
 package com.example.server.services;
 
 import com.example.server.models.Comment;
-import com.example.server.models.Post;
+import com.example.server.models.Blog;
 import com.example.server.models.User;
 import com.example.server.repositories.CommentCriteriaRepository;
 import com.example.server.repositories.CommentRepository;
-import com.example.server.repositories.PostRepository;
+import com.example.server.repositories.BlogRepository;
 import com.example.server.repositories.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -22,17 +22,17 @@ public class CommentService {
 
     private UserRepository userRepository;
 
-    private PostRepository postRepository;
+    private BlogRepository blogRepository;
 
-    public CommentService(CommentRepository commentRepository, CommentCriteriaRepository commentCriteriaRepository, UserRepository userRepository, PostRepository postRepository) {
+    public CommentService(CommentRepository commentRepository, CommentCriteriaRepository commentCriteriaRepository, UserRepository userRepository, BlogRepository blogRepository) {
         this.commentRepository = commentRepository;
         this.commentCriteriaRepository = commentCriteriaRepository;
         this.userRepository = userRepository;
-        this.postRepository = postRepository;
+        this.blogRepository = blogRepository;
     }
 
-    public Page<Comment> getComment(String postId, int page, int limit){
-        return commentCriteriaRepository.findCommentWithFilterPagination(postId,page,limit);
+    public Page<Comment> getComment(String blogId, int page, int limit){
+        return commentCriteriaRepository.findCommentWithFilterPagination(blogId,page,limit);
     }
 
     public Page<Comment> getCommentByMalId(String malId,String type,int page,int limit){
@@ -43,8 +43,8 @@ public class CommentService {
         return userRepository.findById(id).get();
     }
 
-    public Post getPostById(int id){
-        return postRepository.findById(id).get();
+    public Blog getBlogById(int id){
+        return blogRepository.findById(id).get();
     }
 
 
@@ -53,8 +53,8 @@ public class CommentService {
         return commentRepository.findById(id);
     }
 
-    public Comment addComment(Comment newPost){
-        return commentRepository.save(newPost);
+    public Comment addComment(Comment newBlog){
+        return commentRepository.save(newBlog);
     }
 
     public void deleteCommentById(int id){

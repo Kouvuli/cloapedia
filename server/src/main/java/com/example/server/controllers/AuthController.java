@@ -3,11 +3,14 @@ package com.example.server.controllers;
 import com.example.server.models.User;
 import com.example.server.payloads.request.LoginRequest;
 import com.example.server.payloads.request.SignupRequest;
+import com.example.server.payloads.request.TokenRequest;
 import com.example.server.payloads.response.JwtResponse;
 import com.example.server.payloads.response.ResponseObject;
 import com.example.server.repositories.UserRepository;
 import com.example.server.security.jwt.JwtUtils;
 import com.example.server.security.services.UserDetailsImpl;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -53,11 +56,20 @@ public class AuthController {
 //                .map(item -> item.getAuthority())
 //                .collect(Collectors.toList());
 
-        return ResponseEntity.ok(new ResponseObject("ok","successfully get user",new JwtResponse(jwt,
+        return ResponseEntity.ok(new ResponseObject("ok","successfully get user",new JwtResponse(jwtUtils.getExpirationDateFromJwtToken(jwt),jwt,
                 userDetails.getId(),
                 userDetails.getUsername())));
     }
-
+//    @GetMapping("/validate/{token}")
+//    public ResponseEntity<ResponseObject> validateToken(@PathVariable String token){
+//        if(jwtUtils.validateJwtToken(token)){
+//
+//            return ResponseEntity.ok().body(new ResponseObject("ok","token is not expired",""));
+//        }
+//        else{
+//            return ResponseEntity.ok().body(new ResponseObject("failed","token is expired",""));
+//        }
+//    }
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {

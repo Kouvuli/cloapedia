@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Post {
+public class Blog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,13 +19,13 @@ public class Post {
     @Column(name = "create_at")
     private Timestamp createAt;
 
-    @OneToMany(mappedBy = "post")
-    @JsonIgnore
-    private Set<Comment> comments=new HashSet<>();
+//    @OneToMany(mappedBy = "blog")
+//    @JsonIgnore
+//    private Set<Comment> comments=new HashSet<>();
 
-    @OneToMany(mappedBy = "post")
-    @JsonIgnore
-    private Set<Reaction> reactions=new HashSet<>();
+//    @OneToMany(mappedBy = "blog")
+//    @JsonIgnore
+//    private Set<Reaction> reactions=new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "author_id",referencedColumnName = "id")
@@ -35,17 +35,19 @@ public class Post {
 
     private String headline;
 
-    private String title;
+    private String trailText;
 
-    public Post(String content, User author, String thumbnail, String headline, String title) {
+    public Blog(int id, String content, Timestamp createAt, User author, String thumbnail, String headline, String trailText) {
+        this.id = id;
         this.content = content;
+        this.createAt = createAt;
         this.author = author;
         this.thumbnail = thumbnail;
         this.headline = headline;
-        this.title = title;
+        this.trailText = trailText;
     }
 
-    public Post() {}
+    public Blog() {}
 
     public User getAuthor() {
         return author;
@@ -80,29 +82,29 @@ public class Post {
     }
 
 
-    public String getTitle() {
-        return title;
+    public String getTrailText() {
+        return trailText;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTrailText(String trailText) {
+        this.trailText = trailText;
     }
 
-    public Set<Comment> getComments() {
-        return comments;
-    }
+//    public Set<Comment> getComments() {
+//        return comments;
+//    }
+//
+//    public void setComments(Set<Comment> comments) {
+//        this.comments = comments;
+//    }
 
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
-
-    public Set<Reaction> getReactions() {
-        return reactions;
-    }
-
-    public void setReactions(Set<Reaction> reactions) {
-        this.reactions = reactions;
-    }
+//    public Set<Reaction> getReactions() {
+//        return reactions;
+//    }
+//
+//    public void setReactions(Set<Reaction> reactions) {
+//        this.reactions = reactions;
+//    }
 
     public String getThumbnail() {
         return thumbnail;
@@ -122,14 +124,14 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" +
+        return "Blog{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", createAt=" + createAt +
-                ", comments=" + comments +
-                ", reactions=" + reactions +
-                ", author=" + author+
-                ", title='" + title + '\'' +
+                ", author=" + author +
+                ", thumbnail='" + thumbnail + '\'' +
+                ", headline='" + headline + '\'' +
+                ", trailText='" + trailText + '\'' +
                 '}';
     }
 }

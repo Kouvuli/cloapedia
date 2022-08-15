@@ -26,10 +26,10 @@ public class ReactionController {
 
     @GetMapping("")
     ResponseEntity<ResponseObject> getReactionCount(
-            @RequestParam(required = false,name = "post_id") Integer postId,
+            @RequestParam(required = false,name = "blog_id") Integer blogId,
             @RequestParam(required = false,name = "comment_id") Integer commentId
     ){
-        if(postId==null &&commentId==null){
+        if(blogId ==null &&commentId==null){
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok","successfully get data",reactionService.getAllReaction())
             );
@@ -37,8 +37,8 @@ public class ReactionController {
 
 //        long reactionCount=0;
         List<Reaction> foundReactions=new ArrayList<>();
-        if(postId!=null){
-            foundReactions=reactionService.getReacionsByPostId(postId);
+        if(blogId !=null){
+            foundReactions=reactionService.getReacionsByBlogId(blogId);
 //            reactionCount=reactionService.getTargetCountByPostId(String.valueOf(postId));
         } else if (commentId!=null) {
             foundReactions=reactionService.getReacionsByCommentId(commentId);
@@ -51,10 +51,10 @@ public class ReactionController {
 
     @GetMapping("/{id}")
     ResponseEntity<ResponseObject> getReactionById(@PathVariable int id){
-        Optional<Reaction> post=reactionService.getReactionById(id);
-        return post.isPresent()?
+        Optional<Reaction> blog=reactionService.getReactionById(id);
+        return blog.isPresent()?
                 ResponseEntity.status(HttpStatus.OK).body(
-                        new ResponseObject("ok","Query reaction succesfully",post)
+                        new ResponseObject("ok","Query reaction succesfully",blog)
                 ):
                 ResponseEntity.status(HttpStatus.NOT_FOUND).body(
                         new ResponseObject("failed","Cannot find reaction with id="+id,"")
@@ -63,11 +63,11 @@ public class ReactionController {
 
     @PostMapping("")
     ResponseEntity<ResponseObject> insertReaction(@RequestBody Reaction newReaction){
-        if(newReaction.getPost()!=null){
-
-            newReaction.setPost(reactionService.getPostById(newReaction.getPost().getId()));
-        }
-        else if(newReaction.getComment()!=null){
+//        if(newReaction.getBlog()!=null){
+//
+//            newReaction.setBlog(reactionService.getBlogById(newReaction.getBlog().getId()));
+//        }
+        if(newReaction.getComment()!=null){
             newReaction.setComment(reactionService.getCommentById(newReaction.getComment().getId()));
         }
         newReaction.setAuthor(reactionService.getUserById(newReaction.getAuthor().getId()));
@@ -81,14 +81,14 @@ public class ReactionController {
     @DeleteMapping("")
     ResponseEntity<ResponseObject> deleteReaction(
             @RequestParam(required = false,name = "author_id") Integer authorId,
-            @RequestParam(required = false,name = "post_id") Integer postId,
+            @RequestParam(required = false,name = "blog_id") Integer blogId,
             @RequestParam(required = false,name = "comment_id") Integer commentId
     ){
 //        boolean exists=reactionService.ifReactionExists(id);
         Integer reactionId=null;
-        if(postId!=null){
+        if(blogId !=null){
 
-            reactionId=reactionService.getReactionIdByAuthorIdAndPostId(String.valueOf(authorId),String.valueOf(postId));
+            reactionId=reactionService.getReactionIdByAuthorIdAndBlogId(String.valueOf(authorId),String.valueOf(blogId));
         }
         else{
             reactionId=reactionService.getReactionIdByAuthorIdAndCommentId(String.valueOf(authorId),String.valueOf(commentId));

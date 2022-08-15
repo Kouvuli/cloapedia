@@ -27,7 +27,7 @@ public class CommentController {
 
     @GetMapping("")
     ResponseEntity<ResponseObjectPagination> getComment(
-            @RequestParam(required = false,name = "post_id") String postId,
+            @RequestParam(required = false,name = "blog_id") String blogId,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10")int limit
     ){
@@ -37,46 +37,12 @@ public class CommentController {
                     new ResponseObjectPagination(new Pagination(),"failed","Cannot find comment","")
             );
         }
-        Page<Comment> commentPage=commentService.getComment(postId,page,limit);
-        return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObjectPagination(new Pagination(commentPage.getTotalPages(),commentPage.hasNext(),page,limit),"ok","",commentPage.getContent())
-        );
-    }
-    @GetMapping("/anime")
-    ResponseEntity<ResponseObjectPagination> getAnimeComment(
-            @RequestParam(required = false,name = "mal_id") String malId,
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "10")int limit
-    ){
-
-        if(page<0 || limit <1){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new ResponseObjectPagination(new Pagination(),"failed","Cannot find comment","")
-            );
-        }
-        Page<Comment> commentPage=commentService.getCommentByMalId(malId,"anime",page,limit);
+        Page<Comment> commentPage=commentService.getComment(blogId,page,limit);
         return ResponseEntity.status(HttpStatus.OK).body(
                 new ResponseObjectPagination(new Pagination(commentPage.getTotalPages(),commentPage.hasNext(),page,limit),"ok","",commentPage.getContent())
         );
     }
 
-    @GetMapping("/manga")
-    ResponseEntity<ResponseObjectPagination> getMangaComment(
-            @RequestParam(required = false,name = "mal_id") String malId,
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "10")int limit
-    ){
-
-        if(page<0 || limit <1){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new ResponseObjectPagination(new Pagination(),"failed","Cannot find comment","")
-            );
-        }
-        Page<Comment> commentPage=commentService.getCommentByMalId(malId,"manga",page,limit);
-        return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObjectPagination(new Pagination(commentPage.getTotalPages(),commentPage.hasNext(),page,limit),"ok","",commentPage.getContent())
-        );
-    }
 
     @GetMapping("/{id}")
     ResponseEntity<ResponseObject> getCommentById(@PathVariable int id){
@@ -93,13 +59,11 @@ public class CommentController {
     @PostMapping("")
     ResponseEntity<ResponseObject> insertComment(@RequestBody Comment newComment){
         newComment.setAuthor(commentService.getUserById(newComment.getAuthor().getId()));
-        if(newComment.getPost()!=null){
-
-            newComment.setPost(commentService.getPostById(newComment.getPost().getId()));
-        }
-//        if(newComment.getMalId()!=null){
-//            newComment.setMalId(commentService.getPostById(newComment.getPost().getId()));
+//        if(newComment.getBlog()!=null){
+//
+//            newComment.setBlog(commentService.getBlogById(newComment.getBlog().getId()));
 //        }
+
         newComment.setCreateAt(new Timestamp(System.currentTimeMillis()));
         return ResponseEntity.status(HttpStatus.OK).body(
                 new ResponseObject("ok","Insert comment succesfully",commentService.addComment(newComment))

@@ -17,11 +17,6 @@ public class Comment {
 
     private String content;
 
-    @Column(name = "mal_id")
-    private Integer malId;
-
-    @Column(name = "type")
-    private String type;
 
     @Column(name = "create_at")
     private Timestamp createAt;
@@ -30,24 +25,23 @@ public class Comment {
     @JsonIgnore
     private Set<Reaction> reactions=new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "post_id",referencedColumnName = "id")
-    private Post post;
+//    @ManyToOne
+//    @JoinColumn(name = "blog_id",referencedColumnName = "id")
+//    private Blog blog;
 
+    @Column(name = "blog_id")
+    private String blogId;
 
 
     @ManyToOne
     @JoinColumn(name = "author_id",referencedColumnName = "id")
     private User author;
 
-    public Comment(int id, String content, Timestamp createAt, Set<Reaction> reactions, Post post, int malId, String type, User author) {
+    public Comment(int id, String content, Timestamp createAt, String blogId, User author) {
         this.id = id;
         this.content = content;
         this.createAt = createAt;
-        this.reactions = reactions;
-        this.post = post;
-        this.malId = malId;
-        this.type = type;
+        this.blogId = blogId;
         this.author = author;
     }
 
@@ -79,13 +73,21 @@ public class Comment {
         this.createAt = createAt;
     }
 
-    public Post getPost() {
-        return post;
+    public String getBlogId() {
+        return blogId;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setBlogId(String blogId) {
+        this.blogId = blogId;
     }
+
+    //    public Blog getBlog() {
+//        return blog;
+//    }
+//
+//    public void setBlog(Blog blog) {
+//        this.blog = blog;
+//    }
 
     public User getAuthor() {
         return author;
@@ -93,22 +95,6 @@ public class Comment {
 
     public void setAuthor(User author) {
         this.author = author;
-    }
-
-    public Integer getMalId() {
-        return malId;
-    }
-
-    public void setMalId(Integer malId) {
-        this.malId = malId;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public Set<Reaction> getReactions() {
@@ -125,8 +111,7 @@ public class Comment {
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", createAt=" + createAt +
-                ", reactions=" + reactions +
-                ", post=" + post +
+                ", blogId='" + blogId + '\'' +
                 ", author=" + author +
                 '}';
     }

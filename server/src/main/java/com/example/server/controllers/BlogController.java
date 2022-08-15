@@ -16,87 +16,89 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(path = "api/v1/post")
-public class PostController {
+@RequestMapping(path = "api/v1/blog")
+public class BlogController {
 
 
 
     private final BlogService blogService;
 
-    public PostController(BlogService blogService) {
+    public BlogController(BlogService blogService) {
         this.blogService = blogService;
     }
 
 
 
     @GetMapping("")
-    ResponseEntity<ResponseObjectPagination> getPost(
+    ResponseEntity<ResponseObjectPagination> getBlog(
             @RequestParam(required = false,name = "author_id") String authorId,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10")int limit
     ){
         if(page<0 || limit <1){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new ResponseObjectPagination(new Pagination(),"failed","Cannot find post","")
+                    new ResponseObjectPagination(new Pagination(),"failed","Cannot find blog","")
             );
         }
-        Page<Blog> postPage= blogService.getBlog(authorId,page,limit);
+        Page<Blog> blogPage= blogService.getBlog(authorId,page,limit);
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObjectPagination(new Pagination(postPage.getTotalPages(),postPage.hasNext(),page,limit),"ok","",postPage.getContent())
+                new ResponseObjectPagination(new Pagination(blogPage.getTotalPages(),blogPage.hasNext(),page,limit),"ok","",blogPage.getContent())
                 );
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<ResponseObject> getPostById(@PathVariable int id){
-        Optional<Blog> post= blogService.getBlogById(id);
+    ResponseEntity<ResponseObject> getBlogById(@PathVariable int id){
+        Optional<Blog> blog= blogService.getBlogById(id);
 
-        return post.isPresent()?
+        return blog.isPresent()?
              ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject("ok","Query post succesfully",post)
+                    new ResponseObject("ok","Query blog succesfully",blog)
             ):
             ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new ResponseObject("failed","Cannot find post with id="+id,"")
+                    new ResponseObject("failed","Cannot find blog with id="+id,"")
             );
     }
 
     @PostMapping("")
-    ResponseEntity<ResponseObject> insertPost(@RequestBody Blog newBlog){
+    ResponseEntity<ResponseObject> insertBlog(@RequestBody Blog newBlog){
         int authorId = newBlog.getAuthor().getId();
         newBlog.setAuthor(blogService.getUserById(authorId));
         newBlog.setCreateAt(new Timestamp(System.currentTimeMillis()));
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject("ok","Insert post succesfully", blogService.addBlog(newBlog))
+                new ResponseObject("ok","Insert blog succesfully", blogService.addBlog(newBlog))
         );
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<ResponseObject> updatePost(@RequestBody Blog newBlog, @PathVariable int id){
+    ResponseEntity<ResponseObject> updateBlog(@RequestBody Blog newBlog, @PathVariable int id){
         Blog updatedBlog = blogService.getBlogById(id)
-                .map(post->{
-                    post.setContent(newBlog.getContent());
-                    post.setTitle(newBlog.getTitle());
-                    post.setCreateAt(new Timestamp(System.currentTimeMillis()));
-                    return blogService.addBlog(post);
+                .map(blog->{
+                    blog.setContent(newBlog.getContent());
+                    blog.setHeadline(newBlog.getHeadline());
+                    blog.setThumbnail(newBlog.getThumbnail());
+                    blog.setTrailText(newBlog.getTrailText());
+                    blog.setCreateAt(new Timestamp(System.currentTimeMillis()));
+                    return blogService.addBlog(blog);
                 }).orElseGet(()->{
                     newBlog.setId(id);
                     return blogService.addBlog(newBlog);
                 });
         return ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject("ok","Update Post successfully", blogService.addBlog(updatedBlog))
+                new ResponseObject("ok","Update blog successfully", blogService.addBlog(updatedBlog))
         );
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<ResponseObject> deletePost(@PathVariable int id){
+    ResponseEntity<ResponseObject> deleteBlog(@PathVariable int id){
         boolean exists= blogService.ifBlogExists(id);
         if(exists){
             blogService.deleteBlogById(id);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject("ok","Deleted post succesfully","")
+                    new ResponseObject("ok","Deleted blog succesfully","")
             );
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                new ResponseObject("failed","Cannot find post to delete","")
+                new ResponseObject("failed","Cannot find blog to delete","")
         );
     }
 

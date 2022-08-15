@@ -1,7 +1,7 @@
 package com.example.server.services;
 
 import com.example.server.models.Comment;
-import com.example.server.models.Post;
+import com.example.server.models.Blog;
 import com.example.server.models.Reaction;
 import com.example.server.models.User;
 import com.example.server.repositories.ReactionCriteriaRepository;
@@ -17,32 +17,32 @@ import java.util.Optional;
 public class ReactionService {
 
     private ReactionRepository reactionRepository;
-    private  PostService postService;
+    private BlogService blogService;
     private CommentService commentService;
 
     private UserRepository userRepository;
 
     private ReactionCriteriaRepository reactionCriteriaRepository;
 
-    public ReactionService(ReactionRepository reactionRepository, PostService postService, CommentService commentService, UserRepository userRepository, ReactionCriteriaRepository reactionCriteriaRepository) {
+    public ReactionService(ReactionRepository reactionRepository, BlogService blogService, CommentService commentService, UserRepository userRepository, ReactionCriteriaRepository reactionCriteriaRepository) {
         this.reactionRepository = reactionRepository;
-        this.postService = postService;
+        this.blogService = blogService;
         this.commentService = commentService;
         this.userRepository = userRepository;
         this.reactionCriteriaRepository = reactionCriteriaRepository;
     }
 
-    public Integer getReactionIdByAuthorIdAndPostId(String authorId,String postId){
+    public Integer getReactionIdByAuthorIdAndBlogId(String authorId, String postId){
 
-        return reactionCriteriaRepository.findReactionIdByAuthorIdAndPostId(authorId,postId);
+        return reactionCriteriaRepository.findReactionIdByAuthorIdAndBlogId(authorId,postId);
     }
-    public List<Reaction> getReacionsByPostId(int postId){ return reactionRepository.findByPostId(postId);}
+    public List<Reaction> getReacionsByBlogId(int blogId){ return reactionRepository.findByBlogId(blogId);}
     public List<Reaction> getAllReaction(){
         return reactionRepository.findAll();
     }
 
-    public Post getPostById(int id){
-        return postService.getPostById(id).get();
+    public Blog getBlogById(int id){
+        return blogService.getBlogById(id).get();
     }
     public Comment getCommentById(int id){
         return commentService.getCommentById(id).get();
@@ -51,7 +51,7 @@ public class ReactionService {
         return userRepository.findById(id).get();
     }
     public Long getTargetCountByPostId(String postId){
-        return reactionCriteriaRepository.getTargetCountByPostId(postId);
+        return reactionCriteriaRepository.getTargetCountByBlogId(postId);
     }
 
     public long getTargetCountByCommentId(String commentId){
@@ -77,7 +77,7 @@ public class ReactionService {
         if(postId==null){
             return false;
         }
-        return postService.getPostById(postId).isPresent() ;
+        return blogService.getBlogById(postId).isPresent() ;
 
     }
 
@@ -85,7 +85,7 @@ public class ReactionService {
         if(commentId==null){
             return false;
         }
-        return postService.getPostById(commentId).isPresent() ;
+        return blogService.getBlogById(commentId).isPresent() ;
 
     }
 

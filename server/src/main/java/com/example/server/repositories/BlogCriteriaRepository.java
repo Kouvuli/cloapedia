@@ -17,19 +17,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class PostCriteriaRepository {
+public class BlogCriteriaRepository {
 
     private final EntityManager entityManager;
     private final CriteriaBuilder cb;
 
 
 
-    public PostCriteriaRepository(EntityManager entityManager) {
+    public BlogCriteriaRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
         this.cb = entityManager.getCriteriaBuilder();
     }
 
-    public Page<Blog> findPostWithFilterPagination(String authorId, int page, int limit){
+    public Page<Blog> findBlogWithFilterPagination(String authorId, int page, int limit){
         CriteriaQuery<Blog> query=cb.createQuery(Blog.class);
 
         Root<Blog> root=query.from(Blog.class);
@@ -50,11 +50,11 @@ public class PostCriteriaRepository {
 
         Pageable pageable= PageRequest.of(page-1,limit);
 
-        long postCount=getPostCount(predicate);
-        return new PageImpl<>(typedQuery.getResultList(),pageable,postCount);
+        long blogCount= getBlogCount(predicate);
+        return new PageImpl<>(typedQuery.getResultList(),pageable,blogCount);
     }
 
-    private long getPostCount(Predicate predicate){
+    private long getBlogCount(Predicate predicate){
         CriteriaQuery<Long> countQuery=cb.createQuery(Long.class);
         Root<Blog>  countRoot=countQuery.from(Blog.class);
         countQuery.select(cb.count(countRoot)).where(predicate);

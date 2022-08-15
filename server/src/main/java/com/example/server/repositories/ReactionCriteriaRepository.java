@@ -23,10 +23,10 @@ public class ReactionCriteriaRepository {
         cb=entityManager.getCriteriaBuilder();
     }
 
-    public Long getTargetCountByPostId(String postId){
+    public Long getTargetCountByBlogId(String blogId){
         CriteriaQuery<Long> countQuery=cb.createQuery(Long.class);
         Root<Reaction>  countRoot=countQuery.from(Reaction.class);
-        Predicate predicate=cb.equal(countRoot.get("post").get("id"),postId);
+        Predicate predicate=cb.equal(countRoot.get("blog").get("id"),blogId);
         countQuery.select(cb.count(countRoot)).where(predicate);
         return entityManager.createQuery(countQuery).getSingleResult();
 
@@ -40,15 +40,15 @@ public class ReactionCriteriaRepository {
 
 
     }
-    public Integer findReactionIdByAuthorIdAndPostId(String authorId,String postId){
+    public Integer findReactionIdByAuthorIdAndBlogId(String authorId, String blogId){
         CriteriaQuery<Integer> query=cb.createQuery(Integer.class);
         Root<Reaction> root= query.from(Reaction.class);
         List<Predicate> predicates=new ArrayList<>();
         if(authorId!=null){
             predicates.add(cb.equal(root.get("author").get("id"),authorId));
         }
-        if(postId!=null){
-            predicates.add(cb.equal(root.get("post").get("id"),postId));
+        if(blogId!=null){
+            predicates.add(cb.equal(root.get("blog").get("id"),blogId));
         }
         Predicate predicate=cb.and(predicates.toArray(new Predicate[0]));
         query.where(predicate);

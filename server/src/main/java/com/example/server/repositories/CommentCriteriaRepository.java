@@ -26,13 +26,13 @@ public class CommentCriteriaRepository {
         this.entityManager = entityManager;
         this.cb = entityManager.getCriteriaBuilder();
     }
-    public Page<Comment> findCommentWithFilterPagination(String postId, int page, int limit){
+    public Page<Comment> findCommentWithFilterPagination(String blogId, int page, int limit){
         CriteriaQuery<Comment> query=cb.createQuery(Comment.class);
 
         Root<Comment> root=query.from(Comment.class);
         List<Predicate> predicates=new ArrayList<>();
-        if(postId!=null){
-            predicates.add(cb.equal(root.get("post").get("id"),postId));
+        if(blogId!=null){
+            predicates.add(cb.equal(root.get("blogId"),blogId));
         }
 
 

@@ -17,10 +17,12 @@ public class Reaction {
     @JoinColumn(name = "author_id",referencedColumnName = "id")
     private User author;
 
-    @ManyToOne
-    @JoinColumn(name = "post_id",referencedColumnName = "id")
-    private Post post;
+//    @ManyToOne
+//    @JoinColumn(name = "blog_id",referencedColumnName = "id")
+//    private Blog blog;
 
+    @Column(name = "blog_id")
+    private String blogId;
     @ManyToOne
     @JoinColumn(name = "comment_id",referencedColumnName = "id")
     private Comment comment;
@@ -28,11 +30,11 @@ public class Reaction {
     public Reaction() {
     }
 
-    public Reaction(int id, Timestamp createAt, User author, Post post, Comment comment) {
+    public Reaction(int id, Timestamp createAt, User author, String blogId, Comment comment) {
         this.id = id;
         this.createAt = createAt;
         this.author = author;
-        this.post = post;
+        this.blogId = blogId;
         this.comment = comment;
     }
 
@@ -60,13 +62,22 @@ public class Reaction {
         this.author = author;
     }
 
-    public Post getPost() {
-        return post;
+    public String getBlogId() {
+        return blogId;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setBlogId(String blogId) {
+        this.blogId = blogId;
     }
+
+
+    //    public Blog getBlog() {
+//        return blog;
+//    }
+//
+//    public void setBlog(Blog blog) {
+//        this.blog = blog;
+//    }
 
     public Comment getComment() {
         return comment;
@@ -82,7 +93,7 @@ public class Reaction {
                 "id=" + id +
                 ", createAt=" + createAt +
                 ", author=" + author +
-                ", post=" + post +
+                ", blogId='" + blogId + '\'' +
                 ", comment=" + comment +
                 '}';
     }
