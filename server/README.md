@@ -47,20 +47,22 @@
     ...
   ]</pre>}</td>
     <td>{<pre>"response": {
-"status": "",
-"userTier": "",
-"total": ,
-"startIndex": ,
-"pageSize": ,
-"currentPage": ,
-"pages": ,
-"edition": {
-    ...
-},
-"section": {
-    ...
-},
-"results": []
+  "status": "",
+  "userTier": "",
+  "total": ,
+  "startIndex": ,
+  "pageSize": ,
+  "currentPage": ,
+  "pages": ,
+  "edition": {
+      ...
+  },
+  "section": {
+      ...
+  },
+  "results": [
+      ...
+  ]
 }</pre>}</td>
   </tr>
 </table>
@@ -121,17 +123,22 @@
   "status": "failed",
   "message": "",
   "data": []</pre>}</td>
-    <td>{<pre>"pagination": {
-  "last_visible_page": ,
-  "has_next_page": ,
-  "current_page": ,
-  "items": {
-      "count": ,
-      "total": ,
-      "per_page": 
-  }
-},
-"data": []</pre>}</td>
+    <td>{<pre>"response": {
+  "status": "",
+  "userTier": "",
+  "total": ,
+  "startIndex": ,
+  "pageSize": ,
+  "currentPage": ,
+  "pages": ,
+  "edition": {
+      ...
+  },
+  "section": {
+      ...
+  },
+  "results": []
+}</pre>}</td>
   </tr>
 </table>
 
