@@ -21,7 +21,17 @@
   </tr>
   <tr>
     <td>{<pre>"status":"ok",<br>"message":"",<br>"data":{<br> ... <br>}</pre>}</td>
-    <td>{<pre>"data":{<br>...<br>}</pre>}</td>
+    <td>{<pre>"response": {
+  "status": "ok",
+  "userTier": "developer",
+  "total": ,
+  "content": {
+    ...
+  },
+  "relatedContent":[
+    ...
+  ]
+}</pre>}</td>
   </tr>
 </table>
 
@@ -97,11 +107,13 @@
 "data": {
   ...
 }</pre>}</td>
-    <td>{<pre>"status":"",
-"type":"",
-"message":"",
-"error":"",
-</pre>}</td>
+    <td>{<pre>"response": {
+  "status": "ok",
+  "userTier": "developer",
+  "total": ,
+  "content": {},
+  "relatedContent":[]
+}</pre>}</td>
   </tr>
 </table>
 
