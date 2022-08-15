@@ -21,7 +21,11 @@ Website xem tin tức, thời trang, lối sống,... của tạp chí Cloapedia
     -   Username: godofwar
     -   Password: 1234
 
-### Thông tin Database (PostgreSQL):
+### Server, Database đã được deploy lên heroku:
+-   Có thể chỉnh thông tin qua database khác trong file /server/src/main/resources/application.properties
+-   Ngoài ra còn có script để tạo table cũng như thêm sample data ở thư mục script
+
+### Thông tin Database hiện tại(PostgreSQL):
 | Name     | Database Credential                                                                                                                                      |
 | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Host     | ec2-34-193-44-192.compute-1.amazonaws.com                                                                                                                |
