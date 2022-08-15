@@ -104,9 +104,8 @@
   <tr>
     <td>{<pre>"status":"",
 "message":""
-"data": {
-  ...
-}</pre>}</td>
+"data": {}
+</pre>}</td>
     <td>{<pre>"response": {
   "status": "ok",
   "userTier": "developer",
