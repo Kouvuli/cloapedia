@@ -171,5 +171,5 @@
 
 
 # 3. Hosts:
-- Server Host: https://splendid-app-server.herokuapp.com
+- Server Host: https://cloapedia-server.herokuapp.com/
 
