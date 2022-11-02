@@ -23,7 +23,6 @@ const request = (url) => {
       "api-key": "43b9d442-fd12-4164-ae6a-c85ee99148fd"
     }
 
-    // config.params["api-key"] = "43b9d442-fd12-4164-ae6a-c85ee99148fd"
     return config
   })
   axiosClient.interceptors.response.use(
